@@ -1,0 +1,18 @@
+!!!5
+html
+  head
+    title #{title} - Game On Web-App
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header
+      h1 Game On
+      ul#books
+        li: a(href="/") Home
+        li: a(href="episodes") Past Episodes 
+    .container
+      .main-content
+        block content
+      .sidebar
+        block sidebar
+    footer
+      p Running on node with Express, Jade and Stylus
