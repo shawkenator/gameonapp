@@ -3,17 +3,27 @@ html
   head
     title #{title} - Game On Web-App
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    header
-      h1 Game On
-      ul#books
-        li#home: a(href="/") Home
-        li#episodes: a(href="episodes") Past Episodes 
-    .container
-      .main-content
+    #mobilecon
+      #mobilenavhead
+        #navleft
+          img(src= '/images/MenuButton.png')
+          a(href='/')
+            img(src= '/images/GameOnLogo.png')
+        #navright
+          a(href='/sports')
+            img(src= '/images/SportIcon.png')          
+          a(href='/schools')
+            img(src= '/images/SchoolIcon.png')
+          a(href='/search')  
+            img(src= '/images/SearchButton.png')
+      #underbar
+        #datepub
+          | May 15, 2014
+        #pastbutton
+          .div(class="btn",onclick="location.href='/episodes'").
+            View Past Episodes
+      #mobilemaincont
         block content
-      .sidebar
-        block sidebar
-    footer
-      p Running on node with Express, Jade and Stylus
+      footer
+        p Copyright 2014

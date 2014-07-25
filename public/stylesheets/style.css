@@ -168,11 +168,66 @@ header {
 }
 p {
   line-height: 1.8;
+  padding-left: 10px;
 }
 footer {
-  width: 500px;
+  width: 300px;
+  color: #fff;
   margin: 50px auto;
   border-top: 1px dotted #ccc;
   padding-top: 5px;
   font-size: 13px;
+}
+#videocontain {
+  padding-left: 4px;
+}
+#mobilecon {
+  width: 338px;
+  height: 514px;
+  background-image: url("/images/NormalBG.png");
+}
+#mobilenavhead {
+  height: 35px;
+  background-color: #02254f;
+}
+#mobilenavhead img {
+  height: 31px;
+}
+#navright {
+  float: right;
+  width: 110px;
+  padding-top: 2px;
+}
+#navleft {
+  float: left;
+  width: 140px;
+}
+#underbar {
+  height: 30px;
+  background-color: #35617e;
+}
+#pastbutton {
+  float: right;
+  width: 130px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 20px;
+  margin-right: 5px;
+  text-align: center;
+  background-color: #29abe2;
+  padding-top: 2px;
+  margin-top: 3px;
+}
+#datepub {
+  font-size: 14px;
+  line-height: 30px;
+  color: #29abe2;
+  width: 100px;
+  float: left;
+  padding-left: 15px;
+}
+#mobilemaincont {
+  color: #2ab1e9;
+  font-size: 16px;
+  font-weight: bold;
 }

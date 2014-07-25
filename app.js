@@ -28,6 +28,14 @@ app.get('/', function (req, res) {res.render('index',  { title : 'Home' } ) } )
 
 app.get('/episodes', function (req, res) {res.render('episodes',  { title : 'Past Episodes' } ) } )
 
+app.get('/schools', function (req, res) {res.render('schools',  { title : 'Schools' } ) } )
+
+app.get('/search', function (req, res) {res.render('search',  { title : 'Search' } ) } )
+
+app.get('/sports', function (req, res) {res.render('sports',  { title : 'Sports' } ) } )
+
+app.get('/videopage', function (req, res) {res.render('videopage',  { title : 'Video Player Page' } ) } )
+
 app.get('/*', function (req, res) {res.render('notfound',  { title : 'File Not Found' } ) } )
 
 app.listen(3000)
