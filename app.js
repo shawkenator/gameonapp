@@ -5,7 +5,6 @@ var express = require('express')
   , stylus = require('stylus')
   , nib = require('nib')
 
-
 var app = express()
 
 function compile(str, path) {
@@ -13,6 +12,8 @@ function compile(str, path) {
     .set('filename', path)
     .use(nib());
 }
+
+
 
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')
@@ -23,6 +24,7 @@ app.use(stylus.middleware(
   }
 ))
 app.use(express.static(__dirname + '/public'))
+
 
 app.get('/', function (req, res) {res.render('index',  { title : 'Home' } ) } )
 

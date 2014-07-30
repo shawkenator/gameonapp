@@ -1,17 +1,20 @@
 extend layout
 
 block content
+  script(src='/js/vidpage.js')
   p
     | This is the individual player 
 
-  span.LimelightEmbeddedPlayer
-  script(type='text/javascript', href='http://video.limelight.com/player/embed.js')
-  object(type='application/x-shockwave-flash', id='limelight_player_clip', name='limelight_player_clip', class='LimelightEmbeddedPlayerFlash', width='330', height='186', data='http://video.limelight.com/player/loader.swf')
-    param(name='movie', value='http://video.limelight.com/player/loader.swf')
-    param(name='wmode', value='window')
-    param(name='allowScriptAccess', value='always')
-    param(name='allowFullScreen', value='true')
-    param(name='flashVars', value='playerForm=Player&amp;mediaId=f47b940dab4a40aaa58fefd1b0e12aee&amp;channelId=bf1248a0d30443d5937d3632de55cbc4')
-  script(type='text/javascript').
-      LimelightPlayerUtil.initEmbed('limelight_player_clip');  
+  #videocontain
+    span.LimelightEmbeddedPlayer
+    script(type='text/javascript', href='http://video.limelight.com/player/embed.js')
+    object(type='application/x-shockwave-flash', id='limelight_player_clip', name='limelight_player_clip', class='LimelightEmbeddedPlayerFlash', width='330', height='186', data='http://video.limelight.com/player/loader.swf')
+      param(name='movie', value='http://video.limelight.com/player/loader.swf')
+      param(name='wmode', value='window')
+      param(name='allowScriptAccess', value='always')
+      param(name='allowFullScreen', value='true')
+      param(name='flashVars', value='playerForm=Player&amp;mediaId=(#mediaid)&amp;channelId=bf1248a0d30443d5937d3632de55cbc4')
+    script(type='text/javascript').
+      LimelightPlayerUtil.initEmbed('limelight_player_clip');
+
 
