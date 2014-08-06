@@ -247,6 +247,7 @@ footer {
   font-size: 16px;
   font-weight: normal;
   padding-top: 10px;
+  padding-left: 3px;
 }
 #playbutton {
   background-color: #29abe2;
@@ -259,7 +260,7 @@ footer {
   margin-top: 3px;
   padding-top: 2px;
   text-align: center;
-  width: 125px;
+  width: 120px;
 }
 #playbutton a {
   color: #fff;
