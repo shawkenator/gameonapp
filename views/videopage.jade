@@ -13,7 +13,8 @@ block content
         param(name='wmode', value='window')
         param(name='allowScriptAccess', value='always')
         param(name='allowFullScreen', value='true')
-        <script>document.write('<param name="flashVars" value="'+mediaidVar+'">')</script> 
+        script
+          document.write('<param name="flashVars" value="'+mediaidVar+'">')
       script(type='text/javascript').
         LimelightPlayerUtil.initEmbed('limelight_player_clip');
 
