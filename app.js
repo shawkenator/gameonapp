@@ -40,6 +40,8 @@ app.get('/videopage', function (req, res) {res.render('videopage',  { title : 'V
 
 app.get('/videopageh5', function (req, res) {res.render('videopageh5',  { title : 'HTML 5 Video Player Page' } ) } )
 
+app.get('/moreepisodes', function (req, res) {res.render('moreepisodes',  { title : 'Past Episodes' } ) } )
+
 app.get('/*', function (req, res) {res.render('notfound',  { title : 'File Not Found' } ) } )
 
 app.listen(3000)

@@ -3,7 +3,7 @@ html
   head
     title #{title} - Game On Web-App
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='/js/jquery-2.1.1.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
   body
     #mobilecon
       #mobilenavhead
@@ -22,9 +22,13 @@ html
         #datepub
           | May 15, 2014
         #pastbutton
-          .div(class="btn",onclick="location.href='/episodes'").
+          .div(class="btn",onclick="location.href='/episodes?page=1'").
             View Past Episodes
       #mobilemaincont
         block content
       footer
+        script(src='/js/jquery.jscroll.js')
+        script(type='text/javascript').
+          $('.scroll').jscroll();
         p Copyright 2014
+        

@@ -1,0 +1,17 @@
+extend layout
+
+block content
+  script(src='/js/episodes.js')
+  script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+  script(src='/js/jquery.jscroll.js')
+  script(type='text/javascript').
+        $('.scroll').jscroll();
+  p
+    | This is the past episodes page
+    | vehicula. Sed auctor neque eu tellus ut in.
+  p
+    |  test
+
+  #items.scroll
+    script
+      document.write('<a href="/moreepisodes?page='+nextpageNum+'">next page</a>')

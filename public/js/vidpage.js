@@ -10,5 +10,5 @@ $.urlParam = function(name){
 
 var mediaidVar = 'playerForm=Player&amp;mediaId='+$.urlParam('mediaid')+'&amp;channelId=bf1248a0d30443d5937d3632de55cbc4'
 
-console.log($.urlParam('mediaid'));
+console.log($.urlParam('page'));
 console.log(mediaidVar);
