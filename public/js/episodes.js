@@ -16,6 +16,20 @@ var nextpageNum = (++pageNum);
 console.log('Current page #:'+pageNumcurrent);
 console.log('Next page #:'+nextpageNum);
 
+/* $.ajaxPrefilter(function(options) {
+  if(options.crossDomain && jQuery.support.cors) {
+    var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+    options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
+    //options.url = "http://cors.corsproxy.io/url=" + options.url;
+  }
+}); */
+
+$.get(
+    'http://s491706590.onlinehome.us/Sportsstats/cache/load_next.php?page=1',
+    function(response) {
+        $("#items").html(response);
+});
+
 // The Google Geocoding API url used to get the JSON data
 // $.getJSON('js/results.json', function (json) {
 //	$.each(json.media_list, function(i,item){
@@ -28,7 +42,7 @@ console.log('Next page #:'+nextpageNum);
 //	});
 // });
 
-function myFunc( data ){
+/* function myFunc( data ){
   console.log('data: '+ data.total_results ); // Logs "jQuery Howto"
   console.log(data.media_list[0].title);
 
@@ -83,4 +97,4 @@ $.ajax({
   type:     "GET",
   url:      "http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1&f=jsonp",
   dataType: "jsonp",
-});
+}); */
