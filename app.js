@@ -44,4 +44,7 @@ app.get('/moreepisodes', function (req, res) {res.render('moreepisodes',  { titl
 
 app.get('/*', function (req, res) {res.render('notfound',  { title : 'File Not Found' } ) } )
 
-app.listen(3000)
+var port = Number(process.env.PORT || 5000);
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});

@@ -1,5 +1,5 @@
 {
-  "name": "MySite",
+  "name": "GameOn",
   "version": "0.0.1",
   "private": "true",
   "dependencies": {
@@ -8,5 +8,20 @@
     "stylus": "*",
     "nib": "*"
   },
-  "main": "app.js"
+  "main": "app.js",
+  "description": "High School sports all",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/warnert/gameonapp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/warnert/gameonapp/issues"
+  },
+  "homepage": "https://github.com/warnert/gameonapp"
 }
