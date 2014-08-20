@@ -87,43 +87,157 @@ p
   padding-left  10px
 
 footer
-  width 300px
+  width 90%
   color #fff
   margin 50px auto
   border-top 1px dotted #ccc
   padding-top 5px
   font-size 13px
 
-.clear {clear:both}
-.videocontain {padding-left:4px;}
-.img-container {float: left; padding-left: 5px; padding-right: 5px; width: 100px;}  
-.img-container img {width:100px}
-#video-item {padding-left:15px; padding-top:10px}
-#mobilecon {width:338px; height:514px; background-image:url(/images/NormalBG.png)}
-#mobilenavhead {height:35px; background-color:#02254f}
-#mobilenavhead img{height:31px}
-#navright {float:right; width:110px; padding-top:2px;}
-#navleft {float:left; width:140px}
-#underbar {height:30px; background-color:#35617e}
-#pastbutton {float: right; width:130px; font-size:14px; color:#fff; line-height:20px; margin-right:5px; text-align:center; background-color:#29abe2; padding-top:2px; margin-top: 3px;}
-#datepub {font-size:14px; line-height:30px; color:#29abe2; width:100px; float:left; padding-left:15px}
-#mobilemaincont {color:#2ab1e9; font-size:16px; font-weight:normal; padding-top:10px; padding-left:3px}  
-#playbutton {
-    background-color: #29abe2;
-    color: #fff;
-    float: right;
-    font-size: 14px;
-    line-height: 20px;
-    margin-left: 0;
-    margin-right: 86px;
-    margin-top: 3px;
-    padding-top: 2px;
-    text-align: center;
-    width: 120px;
-}
-#playbutton a{color: #fff; font-size: 14px; line-height: 20px; text-decoration:none}
+.clear 
+  clear:both
 
-.vidtitle {
-    font-size: 13px;
-    font-weight: 400;
-}
+.videocontain
+  padding-left:4px
+
+#video-item 
+  padding-left:15px
+  padding-top:10px
+
+#mobilecon 
+  width:100%
+  height:100%
+  background-image:url(/images/NormalBG.jpg)
+
+#mobilenavhead 
+  height:35px
+  background-color:#02254f
+
+#mobilenavhead img
+  height:31px
+
+#navright 
+  float:right
+  width:110px
+  padding-top:2px;
+
+#navleft 
+  float:left
+  width:140px
+
+#underbar
+  height:30px
+  background-color:#35617e
+
+#pastbutton 
+  float: right
+  width:130px
+  font-size:14px
+  color:#fff
+  line-height:20px
+  margin-right:5px
+  text-align:center
+  background-color:#29abe2
+  padding-top:2px
+  margin-top: 3px
+
+#datepub 
+  font-size:14px
+  line-height:30px
+  color:#29abe2
+  width:100px
+  float:left
+  padding-left:15px
+
+#playbutton a
+  color: #fff
+  font-size: 14px
+  line-height: 20px
+  text-decoration:none
+
+@media screen and (min-width:320px)
+  .vidtitle
+    font-size: 13px
+    font-weight: 400
+  .img-container
+    float: left
+    padding-left: 5px 
+    padding-right: 5px 
+    width: 100px
+  .img-container img 
+    width:100px
+  #playbutton
+    background-color: #29abe2
+    color: #fff
+    float: left
+    font-size: 14px
+    line-height: 20px
+    margin-left: 0
+    margin-top: 3px
+    padding-top: 2px
+    text-align: center
+    width: 120px
+  #mobilemaincont
+    color:#2ab1e9
+    font-size:16px
+    font-weight:normal
+    padding-top:10px
+    padding-left:5px
+
+@media screen and (min-width:641px)
+  .vidtitle
+    font-size: 16px
+    font-weight: 400
+  .img-container
+    float: left
+    padding-left: 10px 
+    padding-right: 10px 
+    width:200px
+  .img-container img 
+    width:200px
+  #playbutton
+    background-color: #29abe2
+    color: #fff
+    float: left
+    font-size: 14px
+    line-height: 20px
+    margin-left: 0
+    margin-top: 3px
+    padding-top: 2px
+    text-align: center
+    width: 200px
+  #mobilemaincont
+    color:#2ab1e9
+    font-size:18px
+    font-weight:normal
+    padding-top:10px
+    padding-left:5px
+ 
+@media screen and (min-width:961px)
+  .vidtitle
+    font-size: 22px
+    font-weight: 400
+  .img-container
+    float: left
+    padding-left: 15px 
+    padding-right: 15px 
+    width: 300px
+  .img-container img 
+    width:300px
+  #playbutton
+    background-color: #29abe2;
+    color: #fff
+    float: left
+    font-size: 14px
+    line-height: 20px
+    margin-left: 0
+    margin-top: 3px
+    padding-top: 2px
+    text-align: center
+    width: 310px
+  #mobilemaincont
+    color:#2ab1e9
+    font-size:20px
+    font-weight:normal
+    padding-top:10px
+    padding-left:5px
