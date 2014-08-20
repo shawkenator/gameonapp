@@ -107,6 +107,9 @@ body {
   font-family: 'Georgia';
   background-color: #faf9f0;
   color: #444;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 header {
   font-family: 'Quicksand';
@@ -171,7 +174,7 @@ p {
   padding-left: 10px;
 }
 footer {
-  width: 300px;
+  width: 90%;
   color: #fff;
   margin: 50px auto;
   border-top: 1px dotted #ccc;
@@ -184,23 +187,16 @@ footer {
 .videocontain {
   padding-left: 4px;
 }
-.img-container {
-  float: left;
-  padding-left: 5px;
-  padding-right: 5px;
-  width: 100px;
-}
-.img-container img {
-  width: 100px;
-}
 #video-item {
   padding-left: 15px;
   padding-top: 10px;
 }
 #mobilecon {
-  width: 338px;
-  height: 514px;
-  background-image: url("/images/NormalBG.png");
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/NormalBG.jpg");
+  overflow: auto;
+  display: block;
 }
 #mobilenavhead {
   height: 35px;
@@ -242,33 +238,111 @@ footer {
   float: left;
   padding-left: 15px;
 }
-#mobilemaincont {
-  color: #2ab1e9;
-  font-size: 16px;
-  font-weight: normal;
-  padding-top: 10px;
-  padding-left: 3px;
-}
-#playbutton {
-  background-color: #29abe2;
-  color: #fff;
-  float: right;
-  font-size: 14px;
-  line-height: 20px;
-  margin-left: 0;
-  margin-right: 86px;
-  margin-top: 3px;
-  padding-top: 2px;
-  text-align: center;
-  width: 120px;
-}
 #playbutton a {
   color: #fff;
   font-size: 14px;
   line-height: 20px;
   text-decoration: none;
 }
-.vidtitle {
-  font-size: 13px;
-  font-weight: 400;
+@media screen and (min-width:320px) {
+  .vidtitle {
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .img-container {
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100px;
+  }
+  .img-container img {
+    width: 100px;
+  }
+  #playbutton {
+    background-color: #29abe2;
+    color: #fff;
+    float: left;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 0;
+    margin-top: 3px;
+    padding-top: 2px;
+    text-align: center;
+    width: 120px;
+  }
+  #mobilemaincont {
+    color: #2ab1e9;
+    font-size: 16px;
+    font-weight: normal;
+    padding-top: 10px;
+    padding-left: 5px;
+  }
+}
+@media screen and (min-width:641px) {
+  .vidtitle {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .img-container {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 200px;
+  }
+  .img-container img {
+    width: 200px;
+  }
+  #playbutton {
+    background-color: #29abe2;
+    color: #fff;
+    float: left;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 0;
+    margin-top: 3px;
+    padding-top: 2px;
+    text-align: center;
+    width: 200px;
+  }
+  #mobilemaincont {
+    color: #2ab1e9;
+    font-size: 18px;
+    font-weight: normal;
+    padding-top: 10px;
+    padding-left: 5px;
+  }
+}
+@media screen and (min-width:961px) {
+  .vidtitle {
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .img-container {
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 300px;
+  }
+  .img-container img {
+    width: 300px;
+  }
+  #playbutton {
+    background-color: #29abe2;
+    color: #fff;
+    float: left;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 0;
+    margin-top: 3px;
+    padding-top: 2px;
+    text-align: center;
+    width: 310px;
+  }
+  #mobilemaincont {
+    color: #2ab1e9;
+    font-size: 20px;
+    font-weight: normal;
+    padding-top: 10px;
+    padding-left: 5px;
+  }
 }

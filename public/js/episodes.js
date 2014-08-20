@@ -8,13 +8,15 @@ $.urlParam = function(name){
     }
 }
 
-var pageNumcurrent = $.urlParam('page')
-
 var pageNum = $.urlParam('page')
-var nextpageNum = (++pageNum);
 
-console.log('Current page #:'+pageNumcurrent);
-console.log('Next page #:'+nextpageNum);
+console.log('Current page #:'+pageNum);
+
+$.get(
+    'http://s491706590.onlinehome.us/Sportsstats/cache/load_next.php?page=1',
+    function(response) {
+        $("#items").html(response);
+});
 
 /* $.ajaxPrefilter(function(options) {
   if(options.crossDomain && jQuery.support.cors) {
@@ -24,11 +26,7 @@ console.log('Next page #:'+nextpageNum);
   }
 }); */
 
-$.get(
-    'http://s491706590.onlinehome.us/Sportsstats/cache/load_next.php?page=1',
-    function(response) {
-        $("#items").html(response);
-});
+
 
 // The Google Geocoding API url used to get the JSON data
 // $.getJSON('js/results.json', function (json) {
