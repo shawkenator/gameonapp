@@ -7,9 +7,9 @@ block content
 
   #videocontain
     span.LimelightEmbeddedPlayer
-      script(type='text/javascript', href='http://video.limelight.com/player/embed.js')
-      object(type='application/x-shockwave-flash', id='limelight_player_clip', name='limelight_player_clip', class='LimelightEmbeddedPlayerFlash', width='330', height='186', data='http://video.limelight.com/player/loader.swf')
-        param(name='movie', value='http://video.limelight.com/player/loader.swf')
+      script(href='//video.limelight.com/player/embed.js')
+      object(type='application/x-shockwave-flash', id='limelight_player_clip', name='limelight_player_clip', class='LimelightEmbeddedPlayerFlash', width='330', height='186', data='//video.limelight.com/player/loader.swf')
+        param(name='movie', value='//video.limelight.com/player/loader.swf')
         param(name='wmode', value='window')
         param(name='allowScriptAccess', value='always')
         param(name='allowFullScreen', value='true')
@@ -17,5 +17,4 @@ block content
           document.write('<param name="flashVars" value="'+mediaidVar+'">')
       script(type='text/javascript').
         LimelightPlayerUtil.initEmbed('limelight_player_clip');
-
 
