@@ -236,7 +236,6 @@ footer {
   font-size: 14px;
   line-height: 30px;
   color: #29abe2;
-  width: 100px;
   float: left;
   padding-left: 15px;
 }
@@ -246,7 +245,7 @@ footer {
   line-height: 20px;
   text-decoration: none;
 }
-@media screen and (min-width:320px) {
+@media screen and (min-width: 320px) {
   .vidtitle {
     font-size: 13px;
     font-weight: 400;
@@ -280,7 +279,7 @@ footer {
     padding-left: 5px;
   }
 }
-@media screen and (min-width:641px) {
+@media screen and (min-width: 641px) {
   .vidtitle {
     font-size: 16px;
     font-weight: 400;
@@ -314,7 +313,7 @@ footer {
     padding-left: 5px;
   }
 }
-@media screen and (min-width:961px) {
+@media screen and (min-width: 961px) {
   .vidtitle {
     font-size: 22px;
     font-weight: 400;

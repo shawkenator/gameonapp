@@ -7,7 +7,9 @@ var express = require('express')
   , fs = require('fs')
   , request = require('request')
   , http = require('http')
-  , strftime = require('strftime');
+  , strftime = require('strftime')
+  , morgan = require('morgan')
+  , gameon = require('./gameon'); //express logger moddleware
 
 var app = express();
 
@@ -20,33 +22,20 @@ function compile(str, path) {
 app.set('title','GameOn');
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
+app.use(morgan('combined'));
 app.use(stylus.middleware(
   { src: __dirname + '/public'
   , compile: compile
   }
 ));
+
+//load the episodes files and begin a timer for cache purposes.
+gameon.episode_update()
+setInterval(function() {console.log("Updating episode file."); gameon.episode_update()},300000) //time in milliseconds
+
 app.use(express.static(__dirname + '/public'));
 
-app.get('*', function (req, res, next){
-	app.locals.current_date = strftime('%B %e, %Y');
-	fs.exists('public/html/episode-1.html', function(exists){
-		console.log(exists ? "Yes" : "No");
-	});
-	fs.stat('public/html/episode-1.html',function(err,stats){
-		if (err) throw err;
-		console.log(stats.mtime);
-	});
-
-	var options = {url: 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html',
-					headers: {'If-Modified-Since':'Mon 25 Aug 2014 16:06:45 GMT'}}
-	request(options, function(error, res, body) {
-		if (!error) { console.log(body)}
-		next('route');
-	});
-});
-
-app.get('/', function (req, res)  {
+app.get('/', function (req, res, next)  {
 	var options = {url: 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1',json: true};
 	request(options, function(error, response, body){
 		if (!error && response.statusCode == 200) {
@@ -58,53 +47,68 @@ app.get('/', function (req, res)  {
 		}
 		else {console.log('there was an error')
 			//what to do if there was an error?
+			next('route');
 		}
 	});
 });
 
-app.get('/episodes', function (req, res) {
-	res.render('episodes',  { 	title : 'Past Episodes',
-								date: app.locals.current_date }); 
+app.get('/episodes', function (req, res, next) {
+	fs.exists('public/html/episode-1.html', function(exists){
+		if (exists) {
+			res.render('episodes',  { 	title : 'Past Episodes',
+										date: strftime('%B %e, %Y') }); 
+		} else {
+			console.log("episode file missing");
+			// Do something
+			next('route');
+		}
+	});
+
 });
 
-app.get('/episodesh5', function (req, res) {
+app.get('/episodesh5', function (req, res, next) {
 	res.render('episodesh5',  { title : 'HTML 5 Video Past Episodes',
-								date: app.locals.current_date }); 
+								date: strftime('%B %e, %Y') }); 
 });
 
-app.get('/schools', function (req, res) {
+app.get('/schools', function (req, res, next) {
 	res.render('schools',  { 	title : 'Schools',
-								date: app.locals.current_date })
+								date: strftime('%B %e, %Y') })
 });
 
-app.get('/search', function (req, res) {
+app.get('/search', function (req, res, next) {
 	res.render('search',  { title : 'Search',
-							date: app.locals.current_date })
+							date: strftime('%B %e, %Y') })
 });
 
-app.get('/sports', function (req, res) {
+app.get('/sports', function (req, res, next) {
 	res.render('sports',  { title : 'Sports',
-							date: app.locals.current_date })
+							date: strftime('%B %e, %Y') })
 });
 
-app.get('/videopage', function (req, res) {
+app.get('/videopage', function (req, res, next) {
+	console.log(req.query.mediaid);
+	if (!req.query.mediaid) { //if the mediaid query parameter is missing, do not process
+		next('route'); 
+	}
 	res.render('videopage',  { 	title : 'Video Player Page',
-								date: app.locals.current_date })
+								date: strftime('%B %e, %Y'),
+								media: req.query.mediaid })
 });
 
-app.get('/videopageh5', function (req, res) {
+app.get('/videopageh5', function (req, res, next) {
 	res.render('videopageh5',  { 	title : 'HTML 5 Video Player Page',
-									date: app.locals.current_date })
+									date: strftime('%B %e, %Y') })
 });
 
-app.get('/moreepisodes', function (req, res) {
+app.get('/moreepisodes', function (req, res, next) {
 	res.render('moreepisodes',  { 	title : 'Past Episodes',
-									date: app.locals.current_date})
+									date: strftime('%B %e, %Y')})
 });
 
-app.get('/*', function (req, res) {
+app.get('/*', function (req, res, next) {
 	res.render('notfound',  { 	title : 'File Not Found',
-								date: app.locals.current_date })
+								date: strftime('%B %e, %Y')})
 });
 
 var port = Number(process.env.PORT || 5000);

@@ -2,19 +2,7 @@ extend layout
 
 block content
   script(src='/js/vidpage.js')
-  p
-    | This is the individual player 
+  p This is the individual player
 
   #videocontain
-    span.LimelightEmbeddedPlayer
-      script(href='//video.limelight.com/player/embed.js')
-      object(type='application/x-shockwave-flash', id='limelight_player_clip', name='limelight_player_clip', class='LimelightEmbeddedPlayerFlash', width='330', height='186', data='//video.limelight.com/player/loader.swf')
-        param(name='movie', value='//video.limelight.com/player/loader.swf')
-        param(name='wmode', value='window')
-        param(name='allowScriptAccess', value='always')
-        param(name='allowFullScreen', value='true')
-        script
-          document.write('<param name="flashVars" value="'+mediaidVar+'">')
-      script(type='text/javascript').
-        LimelightPlayerUtil.initEmbed('limelight_player_clip');
-
+    include ../views/limelightplayer.jade
