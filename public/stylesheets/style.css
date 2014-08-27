@@ -250,6 +250,7 @@ footer {
   .vidtitle {
     font-size: 16px;
     font-weight: bold;
+    padding-right: 7px;
   }
   .vidtitle a {
     color: #29abe2;
@@ -257,7 +258,6 @@ footer {
   }
   .img-container {
     float: left;
-    padding-left: 15px;
     padding-right: 15px;
     width: 175px;
   }
