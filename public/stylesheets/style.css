@@ -105,6 +105,7 @@ a img {
  */
 body {
   font-family: 'Georgia';
+  background-image: url("/images/NormalBG.jpg");
   background-color: #faf9f0;
   color: #444;
   height: 100%;
@@ -194,7 +195,7 @@ footer {
 #mobilecon {
   width: 100%;
   height: 100%;
-  background-image: url("/images/NormalBG.jpg");
+/* background-image:url(/images/NormalBG.jpg) */
   overflow: auto;
   display: block;
   overflow: auto;
@@ -247,23 +248,32 @@ footer {
 }
 @media screen and (min-width: 320px) {
   .vidtitle {
-    font-size: 13px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 7px;
+  }
+  .vidtitle a {
+    color: #29abe2;
+    text-decoration: none;
   }
   .img-container {
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
-    width: 100px;
+    padding-right: 15px;
+    width: 175px;
   }
   .img-container img {
-    width: 100px;
+    width: 175px;
+  }
+  .episodeDate {
+    font-size: 15px;
+    font-weight: 400;
+    font-style: italic;
   }
   #playbutton {
     background-color: #29abe2;
     color: #fff;
     float: left;
-    font-size: 14px;
+    font-size: 17px;
     line-height: 20px;
     margin-left: 0;
     margin-top: 3px;
@@ -273,25 +283,30 @@ footer {
   }
   #mobilemaincont {
     color: #2ab1e9;
-    font-size: 16px;
+    font-size: 19px;
     font-weight: normal;
     padding-top: 10px;
     padding-left: 5px;
   }
 }
-@media screen and (min-width: 641px) {
+@media screen and (min-width: 720px) {
   .vidtitle {
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: bold;
   }
   .img-container {
     float: left;
     padding-left: 10px;
     padding-right: 10px;
-    width: 200px;
+    width: 225px;
   }
   .img-container img {
-    width: 200px;
+    width: 225px;
+  }
+  .episodeDate {
+    font-size: 17px;
+    font-weight: 400;
+    font-style: italic;
   }
   #playbutton {
     background-color: #29abe2;
@@ -316,16 +331,21 @@ footer {
 @media screen and (min-width: 961px) {
   .vidtitle {
     font-size: 22px;
-    font-weight: 400;
+    font-weight: bold;
   }
   .img-container {
     float: left;
     padding-left: 15px;
     padding-right: 15px;
-    width: 300px;
+    width: 325px;
+  }
+  .episodeDate {
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
   }
   .img-container img {
-    width: 300px;
+    width: 325px;
   }
   #playbutton {
     background-color: #29abe2;
