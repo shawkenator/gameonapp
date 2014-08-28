@@ -20,11 +20,7 @@ html
           a(href='/search')  
             img(src= '/images/SearchButton.png')
       #underbar
-        #datepub
-          | #{date}
-        #pastbutton
-          .div(class="btn",onclick="location.href='/episodes'").
-            View Past Episodes
+        block underbarContent       
       #mobilemaincont
         block content
       footer

@@ -87,7 +87,6 @@ app.get('/sports', function (req, res, next) {
 });
 
 app.get('/videopage', function (req, res, next) {
-	console.log(req.query.mediaid);
 	if (!req.query.mediaid) { //if the mediaid query parameter is missing, do not process
 		next('route'); 
 	}

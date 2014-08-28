@@ -1,5 +1,12 @@
 extend layout
 
+block underbarContent
+  #datepub
+    | #{date}
+  #pastbutton
+    .div(class="btn",onclick="location.href='/episodes'").
+     View Past Episodes
+
 block content
   script(src='/js/vidpage.js')
 
