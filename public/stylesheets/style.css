@@ -185,9 +185,6 @@ footer {
 .clear {
   clear: both;
 }
-.videocontain {
-  padding-left: 4px;
-}
 #video-item {
   padding-left: 15px;
   padding-top: 10px;
@@ -246,7 +243,15 @@ footer {
   line-height: 20px;
   text-decoration: none;
 }
+#videocontainer {
+  text-align: center;
+}
 @media screen and (min-width: 320px) {
+  .videocontain {
+    padding-left: 4px;
+    width: 325px;
+    margin: 0 auto;
+  }
   .vidtitle {
     font-size: 16px;
     font-weight: bold;
