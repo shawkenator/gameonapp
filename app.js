@@ -9,7 +9,8 @@ var express = require('express')
   , http = require('http')
   , strftime = require('strftime')
   , morgan = require('morgan')
-  , gameon = require('./gameon'); 
+  , gameon = require('./gameon')
+  , xmldoc = require('xmldoc');
 
 var app = express();
 
@@ -66,17 +67,41 @@ app.get('/episodes', function (req, res, next) {
 });
 
 app.get('/schools', function (req, res, next) {
-	res.render('schools',  { 	title : 'Schools',
-								date: strftime('%B %e, %Y') })
+	var listVal = [];
+	request('https://builder.eachscape.com/data/collections/19268.xml',function(error, response, body){
+		if (!error && response.statusCode == 200) {
+			var responseXML = new xmldoc.XmlDocument(body);
+			var data = new xmldoc.XmlDocument(responseXML.childNamed('data'));
+			data.eachChild(function(child,index,array){
+				listVal.push({thumb: child.children[0].attr.medium,
+						displayname: child.children[1].val});
+			});
+		}
+		res.render('selectlist',  { 'title' : 'Schools',
+									'date': strftime('%B %e, %Y'),
+									'list': listVal});
+	});
+});
+
+app.get('/sports', function (req, res, next) {
+	var listVal = [];
+	request('https://builder.eachscape.com/data/collections/19294.xml',function(error, response, body){
+		if (!error && response.statusCode == 200) {
+			var responseXML = new xmldoc.XmlDocument(body);
+			var data = new xmldoc.XmlDocument(responseXML.childNamed('data'));
+			data.eachChild(function(child,index,array){
+				listVal.push({thumb: child.children[0].attr.medium,
+						displayname: child.children[1].val});
+			});
+		}
+		res.render('selectlist',  { 'title' : 'Sports',
+									'date': strftime('%B %e, %Y'),
+									'list': listVal});
+	});
 });
 
 app.get('/search', function (req, res, next) {
 	res.render('search',  { title : 'Search',
-							date: strftime('%B %e, %Y') })
-});
-
-app.get('/sports', function (req, res, next) {
-	res.render('sports',  { title : 'Sports',
 							date: strftime('%B %e, %Y') })
 });
 

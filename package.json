@@ -2,12 +2,16 @@
   "name": "GameOn",
   "version": "0.0.1",
   "private": "true",
+  "engines": {
+    "Node": "0.10.x"
+  },
   "dependencies": {
     "express": "*",
     "jade": "*",
     "stylus": "*",
     "nib": "*",
     "strftime" : "*"
+    "xmldoc" "*"
   },
   "main": "app.js",
   "description": "High School sports all",

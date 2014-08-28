@@ -1,0 +1,12 @@
+extend layout
+
+block underbarContent
+	#datepub #{title}
+
+block content
+	div.select_list
+		ul
+			each val, index in list
+				li 
+					img(src='#{list[index].thumb}')
+					h3 #{list[index].displayname}
