@@ -9,7 +9,7 @@ var express = require('express')
   , http = require('http')
   , strftime = require('strftime')
   , morgan = require('morgan')
-  , gameon = require('./gameon'); //express logger moddleware
+  , gameon = require('./gameon'); 
 
 var app = express();
 
@@ -28,12 +28,11 @@ app.use(stylus.middleware(
   , compile: compile
   }
 ));
+app.use(express.static(__dirname + '/public'));
 
 //load the episodes files and begin a timer for cache purposes.
 gameon.episode_update()
 setInterval(function() {console.log("Updating episode file."); gameon.episode_update()},300000) //time in milliseconds
-
-app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res, next)  {
 	var options = {url: 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1',json: true};
@@ -66,11 +65,6 @@ app.get('/episodes', function (req, res, next) {
 
 });
 
-app.get('/episodesh5', function (req, res, next) {
-	res.render('episodesh5',  { title : 'HTML 5 Video Past Episodes',
-								date: strftime('%B %e, %Y') }); 
-});
-
 app.get('/schools', function (req, res, next) {
 	res.render('schools',  { 	title : 'Schools',
 								date: strftime('%B %e, %Y') })
@@ -93,16 +87,6 @@ app.get('/videopage', function (req, res, next) {
 	res.render('videopage',  { 	title : 'Video Player Page',
 								date: strftime('%B %e, %Y'),
 								media: req.query.mediaid })
-});
-
-app.get('/videopageh5', function (req, res, next) {
-	res.render('videopageh5',  { 	title : 'HTML 5 Video Player Page',
-									date: strftime('%B %e, %Y') })
-});
-
-app.get('/moreepisodes', function (req, res, next) {
-	res.render('moreepisodes',  { 	title : 'Past Episodes',
-									date: strftime('%B %e, %Y')})
 });
 
 app.get('/*', function (req, res, next) {
