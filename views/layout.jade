@@ -3,13 +3,28 @@ html
   head
     title #{title} - Game On Web-App
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-touch-fullscreen', content='yes')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/snap.css')
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
   body
-    #mobilecon
+    .snap-drawers
+      .snap-drawer.snap-drawer-left
+        .div
+          mixin icon(name)
+            li.icon!= name
+          ul
+            +icon('<a href="/"><img src="images/Home_LT.png"><span>Home</span></a>')
+            +icon('<a href="/sports"><img src="images/SportsMenu.png"><span>Sports</span></a>')
+            +icon('<a href="/schools"><img src="images/SchoolIcon_Gret.png"><span>Schools</span></a>')
+            +icon('<a href="/settings"><img src="images/Settings.png"><span>Settings</span></a>')
+
+    #mobilecon.snap-content
       #mobilenavhead
         #navleft
-          img(src= '/images/MenuButton.png')
+          a(href='#', id='open-left')
+            img(src= '/images/MenuButton.png')
           a(href='/')
             img(src= '/images/GameOnLogo.png')
         #navright
@@ -26,3 +41,13 @@ html
       footer
         block footer
         p Copyright 2014 - Calkins Media Incorporated
+
+    script(src='/js/snap.js')
+    script(type='text/javascript').
+      var snapper = new Snap({
+        element: document.getElementById('mobilecon'),
+        disable: 'right'
+       });
+    script(src='/js/gameonmenu.js')
+    script(type='text/javascript').
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
