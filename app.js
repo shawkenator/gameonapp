@@ -68,13 +68,13 @@ app.get('/episodes', function (req, res, next) {
 
 app.get('/schools', function (req, res, next) {
 	var listVal = [];
-	request('https://builder.eachscape.com/data/collections/19268.xml',function(error, response, body){
+	request('https://builder.eachscape.com/data/collections/19266.xml',function(error, response, body){
 		if (!error && response.statusCode == 200) {
 			var responseXML = new xmldoc.XmlDocument(body);
 			var data = new xmldoc.XmlDocument(responseXML.childNamed('data'));
 			data.eachChild(function(child,index,array){
-				listVal.push({thumb: child.children[0].attr.medium,
-						displayname: child.children[1].val});
+				listVal.push({thumb: child.children[2].attr.medium,
+						displayname: child.children[0].val});
 			});
 		}
 		res.render('selectlist',  { 'title' : 'Schools',
