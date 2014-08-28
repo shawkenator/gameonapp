@@ -10,7 +10,7 @@
     "jade": "*",
     "stylus": "*",
     "nib": "*",
-    "strftime" : "*"
+    "strftime" : "*",
     "xmldoc" "*"
   },
   "main": "app.js",
