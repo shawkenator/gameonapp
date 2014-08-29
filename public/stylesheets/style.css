@@ -247,6 +247,10 @@ footer {
   text-align: center;
 }
 @media screen and (min-width: 320px) {
+  .LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash {
+    width: 280px;
+    height: 163px;
+  }
   .videocontain {
     padding-left: 4px;
     width: 325px;
@@ -295,6 +299,10 @@ footer {
   }
 }
 @media screen and (min-width: 720px) {
+  .LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash {
+    width: 620px;
+    height: 349px;
+  }
   .vidtitle {
     font-size: 20px;
     font-weight: bold;
@@ -334,6 +342,10 @@ footer {
   }
 }
 @media screen and (min-width: 961px) {
+  .LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash {
+    width: 860px;
+    height: 484px;
+  }
   .vidtitle {
     font-size: 22px;
     font-weight: bold;

@@ -1,3 +1,4 @@
+/* 
 $(document).ready(function(){
 	if ($(document).width() <= 359){	
 $('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'width:280px;height:163px' );
@@ -15,3 +16,4 @@ $('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'widt
 $('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'width:620px;height:349px' );
 	}
 });
+*/
