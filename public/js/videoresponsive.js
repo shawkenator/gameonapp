@@ -1,17 +1,17 @@
 $(document).ready(function(){
-	if ($(document).width() <= 480){	
-$('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'width:285px;height:163px' );
+	if ($(document).width() <= 439){	
+$('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'width:280px;height:163px' );
 	}	
-	else if ($(document).width() >= 481){
+	else if ($(document).width() >= 440){
 $('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'width:620px;height:349px' );
 	}
 });
 
 $(window).resize(function(){
-	if ($(document).width() <= 480){	
-$('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'width:285px;height:163px' );
+	if ($(document).width() <= 439){	
+$('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'width:280px;height:163px' );
 	}	
-	else if ($(document).width() >= 481){
+	else if ($(document).width() >= 440){
 $('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'width:620px;height:349px' );
 	}
 });
