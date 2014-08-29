@@ -1,3 +1,4 @@
+$(document).ready(function(){
 if(navigator.platform === 'iPad') {
             window.onorientationchange = function() {
 
@@ -20,6 +21,7 @@ if(navigator.platform === 'iPad') {
             }
           }       
         }
+ });
 
 /*
 
