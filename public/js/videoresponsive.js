@@ -1,3 +1,6 @@
+var vp=document.createElement('viewport');
+vp.setAttribute('content','width=device-width');
+
 $(document).ready(function(){
 	if ($(document).width() <= 439){	
 $('.LimelightEmbeddedPlayer .LimeLightEmbeddedPlayerFlash').attr( 'style', 'width:280px;height:163px' );
