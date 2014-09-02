@@ -7,23 +7,28 @@ var fs = require('fs')
 switch (process.env.site) {
 	case '1' : var episodes = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
 		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19294.xml';
+		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
 		break;
 	case '2': var episode = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
 		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19294.xml';
+		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
 		break;
 	case '3': var episode = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
 		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19294.xml';
+		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
 		break;
 	case '4': var episode = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
 		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19294.xml';
+		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
 		break;
 	default: var episode = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
 		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19294.xml';
+		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
 } 
 
 

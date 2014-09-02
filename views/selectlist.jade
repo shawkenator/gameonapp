@@ -8,5 +8,6 @@ block content
 		ul
 			each val, index in list
 				li 
-					img(src='#{list[index].thumb}')
-					h3 #{list[index].displayname}
+					a(href='#{list[index].link}')
+						img(src='#{list[index].thumb}')
+						h3 #{list[index].displayname}

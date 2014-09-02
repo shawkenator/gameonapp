@@ -73,9 +73,11 @@ app.get('/schools', function (req, res, next) {
 			var data = new xmldoc.XmlDocument(responseXML.childNamed('data'));
 			data.eachChild(function(child,index,array){
 				listVal.push({thumb: child.children[2].attr.medium,
-						displayname: child.children[0].val});
+						displayname: child.children[0].val,
+						link: '/article_list?searchParm=' + child.children[1].val + '*'});
 			});
 		}
+		console.log(listVal[0].link)
 		res.render('selectlist',  { 'title' : 'Schools',
 									'date': strftime('%B %e, %Y'),
 									'list': listVal});
@@ -89,8 +91,10 @@ app.get('/sports', function (req, res, next) {
 			var responseXML = new xmldoc.XmlDocument(body);
 			var data = new xmldoc.XmlDocument(responseXML.childNamed('data'));
 			data.eachChild(function(child,index,array){
+				console.log(child.children[2].val);
 				listVal.push({thumb: child.children[0].attr.medium,
-						displayname: child.children[1].val});
+						displayname: child.children[1].val,
+						link: '/article_list?searchParm=' + child.children[2].val + '*'});
 			});
 		}
 		res.render('selectlist',  { 'title' : 'Sports',
