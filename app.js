@@ -31,12 +31,11 @@ app.use(stylus.middleware(
 ));
 app.use(express.static(__dirname + '/public'));
 
-//load the episodes files and begin a timer for cache purposes.
-gameon.episode_update()
-setInterval(function() {console.log("Updating episode file."); gameon.episode_update()},300000) //time in milliseconds
+var site = process.env.site;
+console.log('For site = ' + site);
 
 app.get('/', function (req, res, next)  {
-	var options = {url: 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1',json: true};
+	var options = {url: 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=' + site,json: true};
 	request(options, function(error, response, body){
 		if (!error && response.statusCode == 200) {
 			var episode = body.media_list[0];
@@ -68,7 +67,7 @@ app.get('/episodes', function (req, res, next) {
 
 app.get('/schools', function (req, res, next) {
 	var listVal = [];
-	request('https://builder.eachscape.com/data/collections/19266.xml',function(error, response, body){
+	request(gameon.school,function(error, response, body){
 		if (!error && response.statusCode == 200) {
 			var responseXML = new xmldoc.XmlDocument(body);
 			var data = new xmldoc.XmlDocument(responseXML.childNamed('data'));
@@ -85,7 +84,7 @@ app.get('/schools', function (req, res, next) {
 
 app.get('/sports', function (req, res, next) {
 	var listVal = [];
-	request('https://builder.eachscape.com/data/collections/19294.xml',function(error, response, body){
+	request(gameon.sport,function(error, response, body){
 		if (!error && response.statusCode == 200) {
 			var responseXML = new xmldoc.XmlDocument(body);
 			var data = new xmldoc.XmlDocument(responseXML.childNamed('data'));
