@@ -1,0 +1,17 @@
+extend layout
+
+block underbarContent
+	#datepub #{title}
+
+block content
+	.article-contain
+		.article-image-main
+			img(src= '#{image}')
+		.clear
+		.article-content-main
+			h3 #{headline}
+			span.lastupdated Last Updated: #{date}
+			br
+			span.author #{author}
+			.text 
+				!{content}

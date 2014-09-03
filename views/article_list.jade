@@ -6,6 +6,6 @@ block underbarContent
 block content
 	.article-contain
 		each val, index in list
-			.article-item(style="background-image: url('#{list[index].link}');" onclick="location.href='#';")
+			.article-item(style="background-image: url('#{list[index].image}');" onclick="location.href='#{list[index].guid}';")
 				.article-headline
-					a(href='#') #{list[index].headline}
+					a(href='#{list[index].guid}') #{list[index].headline}
