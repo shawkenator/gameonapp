@@ -73,7 +73,7 @@ app.get('/schools', function (req, res, next) {
 			records.forEach(function(item){
 				listVal.push({thumb: item.children[2].attr.medium,
 						displayname: item.children[0].val,
-						link: '/article_list?searchParm=' + item.children[1].val + '*'});
+						link: '/article_list?title='+ item.children[0].val +'&searchParm=' + item.children[1].val + '*'});
 			});
 		}
 		console.log(listVal[0].link)
@@ -91,7 +91,7 @@ app.get('/sports', function (req, res, next) {
 			records.forEach(function(item){
 				listVal.push({thumb: item.children[0].attr.medium,
 									displayname: item.children[1].val,
-									link: '/article_list?searchParm=' + item.children[2].val + '*'});
+									link: '/article_list?title='+item.children[1].val+'&searchParm=' + item.children[2].val + '*'});
 			});
 		}
 		res.render('selectlist',  { 'title' : 'Sports',
@@ -104,9 +104,38 @@ app.get('/article_list', function (req,res,next) {
 		if (!req.query.searchParm) { //There is no searchParm provided
 			next('route'); 
 		}
-		res.render('article_list', { 'title' : 'Title',
-									  'date': strftime('%B %e, %Y'),
-									   });
+		var listVal = [];
+		console.log('Search param: ' + req.query.searchParm);
+		request(gameon.articleSearch + req.query.searchParm, function (error, response, body){
+			if (!error && response.statusCode == 200) {
+				var records = (new xmldoc.XmlDocument(body)).children[0].children;
+				records.forEach(function (items) {
+					var headline = '', guid = '', link = '';
+					if (items.name === 'item') {
+						items.children.forEach(function (item){
+							if (item.name === 'title') {headline = item.val;}
+							if (item.name === 'guid') {guid = item.val;}
+							if (item.name === 'multimedia') {
+								item.children.forEach(function (multimedia) {
+										multimedia.children.forEach(function (media) {
+											if (media.name === 'link') {
+												console.log('link: ' + media.val); 
+												if (link === '') {link = media.val }
+											}
+										})
+								})
+							}
+						})
+					}
+					if (link == '') {link = gameon.defaultLogo } //There was no image attached
+					if (guid !== '') {listVal.push({'headline': headline, 'guid': guid, 'link': link});}
+				})
+			}
+			console.log(listVal)
+			res.render('article_list', { 'title' : req.query.title || '',
+									 'date': strftime('%B %e, %Y'),
+									  'list': listVal });
+		})
 });
 
 app.get('/search', function (req, res, next) {

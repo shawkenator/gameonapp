@@ -2,35 +2,41 @@
 * GameOn specific functions
 */
 var fs = require('fs')
-  , request = require('request');
+  , request = require('request')
+  , xmldoc = require('xmldoc');
 
+//set URIs based on the site
 switch (process.env.site) {
 	case '1' : var episodes = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
-		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
-		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
+		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.defaultLogo = 'images/GameOn_BigLogo.png';
 		break;
 	case '2': var episode = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
-		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
-		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
+		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.defaultLogo = 'images/GameOn_BigLogo.png';
 		break;
 	case '3': var episode = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
-		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
-		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
+		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.defaultLogo = 'images/GameOn_BigLogo.png';
 		break;
 	case '4': var episode = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
-		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
-		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
+		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.defaultLogo = 'images/GameOn_BigLogo.png';
 		break;
 	default: var episode = 'http://s491706590.onlinehome.us/Sportsstats/cache/episode-1.html';
-		module.exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		module.exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
-		module.exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
+		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]='
+		exports.defaultLogo = 'images/GameOn_BigLogo.png';
 } 
-
 
 episode_update = function(){
 	request(episodes, function(error, res, body) {
