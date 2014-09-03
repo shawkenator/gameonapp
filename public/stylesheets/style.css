@@ -113,7 +113,7 @@ body {
   padding: 0;
 }
 header {
-  font-family: 'Quicksand';
+  font-family: 'Lato';
   padding: 50px 10px;
   color: #fff;
   font-size: 25px;
@@ -246,9 +246,13 @@ footer {
 #videocontainer {
   text-align: center;
 }
+.select_list a {
+  color: #fba326;
+  text-decoration: none;
+}
 @media screen and (min-width: 320px) {
   .select_list ul {
-    padding-left: 10px;
+    padding-left: 0px;
   }
   .select_list img {
     height: 100px;

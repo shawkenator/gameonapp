@@ -1,0 +1,11 @@
+extend layout
+
+block underbarContent
+	#datepub #{title}
+
+block content
+	.article-contain
+		each val, index in list
+			.article-item(style="background-image: url('http://bloximages.newyork1.vip.townnews.com/timesonline.com/content/tncms/assets/v3/editorial/6/c1/6c1e84e7-71de-5a18-9868-034c01f91673/54053f5e34e9a.preview-600.jpg');" onclick="location.href='#';")
+				.article-headline
+					a(href='#') Title
