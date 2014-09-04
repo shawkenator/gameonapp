@@ -134,6 +134,77 @@ app.get('/article_list', function (req,res,next) {
 		});
 });
 
+app.get('/image_list', function (req,res,next) {
+		if (!req.query.searchParm) {next('route');} //There is no searchParm provided
+		var title = req.query.title || '';
+		var listVal = [];
+		request(gameon.imageSearch + req.query.searchParm, function (error, response, body){
+			if (!error && response.statusCode == 200) {
+				var records = (new xmldoc.XmlDocument(body)).children[0].children;
+				records.forEach(function (items) {
+					var headline = '', guid = '', imageURI = '';
+					if (items.name === 'item') { //only process item nodes
+						items.children.forEach(function (item){
+							if (item.name === 'title') {headline = item.val;}
+							if (item.name === 'guid') {guid = '/image?title=' + title + '&guid=uuid:' + item.val.substr(12);} //build link to the article page
+							if (item.name === 'multimedia') {
+								item.children.forEach(function (multimedia) {
+										multimedia.children.forEach(function (media) {
+											if (media.name === 'link') {
+												if (imageURI === '') {imageURI = media.val }
+											}
+										})
+								})
+							}
+						})
+					}
+					if (imageURI == '') {imageURI = gameon.defaultLogo } //There was no image attached use default
+					if (guid !== '') {listVal.push({'headline': headline, 'guid': guid, 'image': imageURI});}
+				})
+			}
+			res.render('image_list', { 'title' : title,
+									 'date': strftime('%B %e, %Y'),
+									  'list': listVal });
+		});
+});
+
+app.get('/image', function (req, res, next) {
+	if (!req.query.guid) {next('route')} //there was no guid passed.
+	var title = req.query.title || '';
+	var headline = '', author = '', content = '', pubDate = '', imageURI = '';
+	request(gameon.imageSearch + req.query.guid, function (error, response, body){
+		if (!error && response.statusCode == 200) {
+			var records = (new xmldoc.XmlDocument(body)).children[0].children;
+			records.forEach(function (items) {
+				if (items.name === 'item') { //only process the story
+					items.children.forEach(function (item) {
+						if (item.name === 'title') {headline = item.val}
+						if (item.name === 'author') {author = item.val}
+						if (item.name === 'content') {content = item.val}
+						if (item.name === 'pubDate') {pubDate = strftime('%a, %d %b %Y %H:%M %Z', new Date(item.val))}
+						if (item.name === 'multimedia') {
+							item.children.forEach(function (multimedia){
+								multimedia.children.forEach(function (media){
+									if (media.name === 'link') {
+										if (imageURI === '') {imageURI = media.val}
+									}
+								})
+							})
+						} 
+					}
+				)}
+			})
+		}
+		console.log(content);
+		res.render('image', { 	'title' : title,
+									'date': pubDate,
+									'image': imageURI,
+									'headline': headline,
+									'author': author,
+									'content': content });
+	});
+});
+
 app.get('/article', function (req, res, next) {
 	if (!req.query.guid) {next('route')} //there was no guid passed.
 	var title = req.query.title || '';
