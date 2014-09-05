@@ -4,14 +4,13 @@ block underbarContent
 	#datepub #{title}
 	.underbar-catlinks
 		.articleicon
-			a(href='#')
-				img(src='images/ArtricleIcon.png')
+			a(href='#{articleLink}')
+				img(src='/images/ArtricleIcon.png')
 		.imagesicon
-			a(href='#')
-				img(src='images/PicIcon_Selected.png')
+			img(src='/images/PicIcon_Selected.png')
 		.videoicon
 			a(href='#')
-				img(src='images/VideoIcon.png')
+				img(src='/images/VideoIcon.png')
 
 block content
 	link(rel='stylesheet', href='/stylesheets/slideshow.css')
@@ -29,8 +28,8 @@ block content
 			each val, index in list
 				div
 					.img-details
-						span.img-title #{list[index].headline}
-						span.img-caption #{list[index].content}
+						span.img-title !{list[index].headline}
+						span.img-caption !{list[index].content}
 					img(u='image', src= '#{list[index].image}')
 					img(u='thumb', src= '#{list[index].thumb}') 
 
