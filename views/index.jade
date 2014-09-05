@@ -4,8 +4,9 @@ block underbarContent
 	#datepub #{date}
 	#pastbutton
 		.div(class="btn",onclick="location.href='/episodes'") View Past Episodes
-block content	
-	script(src='/js/videoresponsive.js')
+block content
 	#videocontainer
 		#videocontain
 			include ../views/limelightplayer.jade
+block footer
+	script(src='/js/limelight.js')

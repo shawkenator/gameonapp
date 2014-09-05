@@ -2,8 +2,7 @@
 * GameOn specific functions
 */
 var fs = require('fs')
-  , request = require('request')
-  , xmldoc = require('xmldoc');
+  , request = require('request');
 
 //set URIs based on the site
 switch (process.env.site) {
