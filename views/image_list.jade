@@ -1,0 +1,45 @@
+extend layout
+
+block underbarContent
+	#datepub #{title}
+	.underbar-catlinks
+		.articleicon
+			a(href='#')
+				img(src='images/ArtricleIcon.png')
+		.imagesicon
+			a(href='#')
+				img(src='images/PicIcon_Selected.png')
+		.videoicon
+			a(href='#')
+				img(src='images/VideoIcon.png')
+
+block content
+	link(rel='stylesheet', href='/stylesheets/slideshow.css')
+	script(src='/js/jssor.core.js')
+	script(src='/js/jssor.utils.js')
+	script(src='/js/jssor.slider.js')
+	script(src='/js/slideshow.js')
+
+	#slider1_container(style='position: relative; width: 720px; height: 480px; overflow: hidden;')
+		div(u='loading', style='position: absolute; top: 0px; left: 0px;')
+			div(style='filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block; background-color: #000; top: 0px; left: 0px;width:100%;height:100%;')
+			div(style='position: absolute; display: block; background: url(images/loading.gif) no-repeat center center; top: 0px; left: 0px;width: 100%;height:100%;')
+
+		div(u='slides', style='cursor: move; position: absolute; left: 0px; top: 0px; width: 720px; height: 480px; overflow: hidden')
+			each val, index in list
+				div
+					.img-details
+						span.img-title #{list[index].headline}
+						span.img-caption #{list[index].content}
+					img(u='image', src= '#{list[index].image}')
+					img(u='thumb', src= '#{list[index].thumb}') 
+
+		.jssort07(u='thumbnavigator', style='position: absolute; width: 720px; height: 100px; left: 0px; bottom: 0px; overflow: hidden;')
+			div(style='background-color: #000; filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;')
+			div(u='slides', style='cursor: move;')
+				.p(u='prototype', style='POSITION: absolute; WIDTH: 99px; HEIGHT: 66px; TOP: 0; LEFT: 0;')
+					thumbnailtemplate.i(style='position:absolute;')
+					.o
+
+			span.jssora11l(u='arrowleft', style='width: 37px; height: 37px; top: 123px; left: 8px;')
+			span.jssora11r(u='arrowright', style='width: 37px; height: 37px; top: 123px; right: 8px') 
