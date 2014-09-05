@@ -74,7 +74,7 @@ app.get('/schools', function (req, res, next) {
     			records.forEach(function(record){
     				listVal.push({'thumb': record.school_image[0].$.medium,
 						'displayname': record.displayname[0],
-						'link': '/article_list?title='+ record.displayname[0] +'&searchParm=' + record.queryparameter[0] + '*'});
+						'link': '/article_list?title='+ record.displayname[0] +'&searchParm=' + record.queryparameter[0] + '*&school=' + record.queryparameterv[0]});
     			});
 			});
 		}
@@ -90,10 +90,10 @@ app.get('/sports', function (req, res, next) {
 		if (!error && response.statusCode == 200) {
 			parseXML(body, function (err, result) {
     			records = result.response.data[0].record;
-    			records.forEach(function(record){
+    			records.forEach(function (record){
     				listVal.push({'thumb': record.sport_image[0].$.medium,
 						'displayname': record.displayname[0],
-						'link': '/article_list?title='+ record.displayname[0] +'&searchParm=' + record.queryparameter[0] + '*'});
+						'link': '/article_list?title='+ record.displayname[0] +'&searchParm=' + record.queryparameter[0] + '*&sport='+ record.queryparameterv[0]});
     			});
 			});
 		}
@@ -102,6 +102,27 @@ app.get('/sports', function (req, res, next) {
 									'list': listVal});
 	});
 });
+
+app.get('/video_list', function (req,res,next) {
+	if (req.query.school) {var searchParm = 'school=' + req.query.school}
+	else if (req.query.sport) {var searchParm = 'sport=' + req.query.sport}
+	else {next('route')} //There is no school or sport provided in the url	
+	var title = req.query.title || '';
+	var listVal = [];
+	request({'url': gameon.videoSearch + searchParm, 'json':true}, function (error, response, body){
+			if (!error && response.statusCode == 200) {
+				body.media_list.forEach(function (episode) {
+					listVal.push({'thumb': episode.thumbnails[1],
+									'mediaid': episode.media_id,
+									'headline': episode.title});
+				})
+			}
+		console.log(listVal);
+		res.render('video_list', { 'title' : title,
+									 'date': strftime('%B %e, %Y'),
+									 'list': listVal });
+	})
+})
 
 app.get('/article_list', function (req,res,next) {
 	if (!req.query.searchParm) {next('route');} //There is no searchParm provided
@@ -122,9 +143,9 @@ app.get('/article_list', function (req,res,next) {
 					})
 				})
 			}
-	res.render('article_list', { 'title' : title,
-								 'date': strftime('%B %e, %Y'),
-								 'list': listVal });
+		res.render('article_list', { 'title' : title,
+									 'date': strftime('%B %e, %Y'),
+									 'list': listVal });
 	})
 })
 
@@ -137,14 +158,16 @@ app.get('/image_list', function (req,res,next) {
 				parseXML(body, function (err, result) {	
 					records = result.rss.channel[0].item;
 					records.forEach(function (record) {
-						var headline = '', guid = '', imageURI = '', imageThumb = '';
+						var headline = '', guid = '', imageURI = '', imageThumb = '', content = '', author = '';
 						headline = record.title[0];
-						guid = '/article?title=' + title + '&guid=uuid:' + record.guid[0]._.substr(12); //build link to the article page
+						author = record.author[0];
+						content = record.content[0];
+						pubDate = strftime('%a, %d %b %Y %H:%M %Z', new Date(record.pubDate[0]));
 						if (record.multimedia[0].media) { //images attached
 							imageURI = record.multimedia[0].media[0].link;
 							imageThumb = record.multimedia[0].media[0].thumbnail;
 						} else { imageURI = gameon.defaultLogo } //There was no image attached use default
-						listVal.push({'headline': headline, 'guid': guid, 'image': imageURI, 'thumb': imageThumb});
+						listVal.push({'headline': headline, 'image': imageURI, 'thumb': imageThumb, 'author': author, 'content': content, 'date': pubDate});
 					})
 				})
 			}
@@ -173,33 +196,6 @@ app.get('/article', function (req, res, next) {
 				});
 			}
 		res.render('article', { 'title' : title,
-								'date': pubDate,
-								'image': imageURI,
-								'headline': headline,
-								'author': author,
-								'content': content });
-	});
-});
-
-app.get('/image', function (req, res, next) {
-	if (!req.query.guid) {next('route')} //there was no guid passed.
-	var title = req.query.title || '';
-	var headline = '', author = '', content = '', pubDate = '', imageURI = '';
-	request(gameon.imageSearch + req.query.guid, function (error, response, body){
-		if (!error && response.statusCode == 200) {
-			parseXML(body, function (err, result) {	
-				records = result.rss.channel[0].item;
-				records.forEach(function (record) {
-						headline = record.title[0];
-						author = record.author[0];
-						content = record.content[0];
-						pubDate = strftime('%a, %d %b %Y %H:%M %Z', new Date(record.pubDate[0]));
-						if (record.multimedia[0].media) { //images attached
-							imageURI = record.multimedia[0].media[0].link; }
-					});
-				});
-			}
-		res.render('image', { 'title' : title,
 								'date': pubDate,
 								'image': imageURI,
 								'headline': headline,
