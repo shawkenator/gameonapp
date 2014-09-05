@@ -1,4 +1,5 @@
-function limeLightPlayerCallback(playerId, eventName, data) {
+function limelightPlayerCallback (playerId, eventName, data) {
+	console.log('LimeLightPlayerCallback called with playerId = ' + playerId + ' and event = ' + eventName);
 	if (eventName == 'onPlayerLoad' && (LimelightPlayer.getPlayers() == null || LimelightPlayer.getPlayers().length == 0)) {
 		LimelightPlayer.registerPlayer("limelight_player_clip");}
     switch (eventName) {
