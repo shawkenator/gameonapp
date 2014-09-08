@@ -2,6 +2,15 @@ extend layout
 
 block underbarContent
 	#datepub #{title}
+	.underbar-catlinks
+		.articleicon
+			img(src='/images/ArtricleIcon_Selected.png')
+		.imagesicon
+			a(href='#{imageLink}')
+				img(src='/images/PicIcon.png')
+		.videoicon
+			a(href='#')
+				img(src='/images/VideoIcon.png')
 
 block content
 	.article-contain
