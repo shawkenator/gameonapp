@@ -104,8 +104,8 @@ app.get('/sports', function (req, res, next) {
 });
 
 app.get('/video_list', function (req,res,next) {
-	if (req.query.school) {var searchParm = 'school=' + req.query.school}
-	else if (req.query.sport) {var searchParm = 'sport=' + req.query.sport}
+	if (req.query.school) {var searchParm = '&school=' + req.query.school}
+	else if (req.query.sport) {var searchParm = '&sport=' + req.query.sport}
 	else {next('route')} //There is no school or sport provided in the url	
 	var title = req.query.title || '';
 	var listVal = [];
@@ -113,7 +113,7 @@ app.get('/video_list', function (req,res,next) {
 			if (!error && response.statusCode == 200) {
 				if (!body.media_list) {res.render('no_records', {'title':title, message: 'No videos available'}); return;};
 				body.media_list.forEach(function (episode) {
-					listVal.push({'thumb': episode.thumbnails[1],
+					listVal.push({'thumb': episode.thumbnails[1].url,
 									'mediaid': episode.media_id,
 									'headline': episode.title});
 				})
@@ -121,6 +121,8 @@ app.get('/video_list', function (req,res,next) {
 		console.log(listVal);
 		res.render('video_list', { 'title' : title,
 									 'date': strftime('%B %e, %Y'),
+									 'imageLink': '/image_list/?title=' + title + '&searchParm=' + req.query.searchParm + searchParm,
+									 'articleLink': '/article_list/?title=' + title + '&searchParm=' + req.query.searchParm + searchParm,
 									 'list': listVal });
 	})
 })
@@ -151,6 +153,7 @@ app.get('/article_list', function (req,res,next) {
 		res.render('article_list', { 'title' : title,
 									 'date': strftime('%B %e, %Y'),
 									 'imageLink': '/image_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink,
+									 'videopageLink': '/video_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink,
 									 'list': listVal });
 	})
 })
@@ -184,6 +187,7 @@ app.get('/image_list', function (req,res,next) {
 	res.render('image_list', { 'title' : title,
 								 'date': strftime('%B %e, %Y'),
 								 'articleLink': '/article_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink,
+								 'videopageLink': '/video_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink,
 								 'list': listVal });
 	})
 })

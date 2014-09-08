@@ -1,0 +1,20 @@
+extend layout
+
+block underbarContent
+	#datepub #{title}
+	.underbar-catlinks
+		.articleicon
+			a(href='#{articleLink}')
+				img(src='/images/ArtricleIcon.png')
+		.imagesicon
+			a(href='#{imageLink}')
+				img(src='/images/PicIcon.png')
+		.videoicon
+			img(src='/images/VideoIcon_Selected.png')
+
+block content
+	.article-contain
+		each val, index in list
+			.article-item(style="background-image: url('#{list[index].thumb}');" onclick="location.href='/videopage?mediaid=#{list[index].mediaid}';")
+				.video-headline
+					a(href='/videopage?mediaid=#{list[index].mediaid}') #{list[index].headline}
