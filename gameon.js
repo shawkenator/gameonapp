@@ -61,6 +61,7 @@ switch (process.env.site) {
 
 //build episode html files
 episode_update = function(){
+	fs.mkdir('public/html', function (err) {})
 	request({url: episodes, json: true}, function(error, res, body) {
 		if (!error) {
 			console.log("Result Status for file " + episodes + ' = ' + res.statusCode);
