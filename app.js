@@ -40,9 +40,10 @@ app.get('/', function (req, res, next)  {
 		if (!error && response.statusCode == 200) {
 			var episode = body.media_list[0];
 			var episode_date = (strftime('%B %e, %Y', new Date(episode.publish_date * 1000))); //multiple by 1000 to convert to milliseconds
-			res.render('index',  { title : 'Home', 
-								   media : episode.media_id,
-								   date : episode_date });
+			res.render('index',  { 'title' : 'Home', 
+								   'media' : episode.media_id,
+								   'date' : strftime('%B %e, %Y'),
+								   'playerID': 'limelight_player_' + process.env.site});
 		}
 		else {console.log('there was an error')
 			//what to do if there was an error?
@@ -228,9 +229,12 @@ app.get('/videopage', function (req, res, next) {
 	if (!req.query.mediaid) { //if the mediaid query parameter is missing, do not process
 		next('route'); 
 	}
-	res.render('videopage',  { 	title : 'Video Player Page',
-								date: strftime('%B %e, %Y'),
-								media: req.query.mediaid })
+	// need some logic to determine the playerID which in turn controls the ad pre-roll tags
+	playerID = 'limelight_player_' + process.env.site;
+	res.render('videopage',  { 	'title' : 'Video Player Page',
+								'date': strftime('%B %e, %Y'),
+								'media': req.query.mediaid,
+								'playerId': playerID  })
 });
 
 app.get('/*', function (req, res, next) {
