@@ -52,7 +52,7 @@ app.get('/', function (req, res, next)  {
 });
 
 app.get('/episodes', function (req, res, next) {
-	fs.exists('public/html/episode-1.html', function(exists){
+	fs.exists('public/html/episode-test-1.html', function(exists){
 		if (exists) {
 			res.render('episodes',  { 	title : 'Past Episodes',
 										date: strftime('%B %e, %Y') }); 
@@ -72,7 +72,7 @@ app.get('/schools', function (req, res, next) {
 			parseXML(body, function (err, result) {
     			records = result.response.data[0].record;
     			records.forEach(function(record){
-    				listVal.push({'thumb': record.school_image[0].$.medium,
+    				listVal.push({'thumb': (record.school_image[0].$.medium) ? record.school_image[0].$.medium : '/images/GameOn_BigLogo.png' ,
 						'displayname': record.displayname[0],
 						'link': '/article_list?title='+ record.displayname[0] +'&searchParm=' + record.queryparameter[0] + '*&school=' + record.queryparameterv[0]});
     			});
@@ -91,7 +91,7 @@ app.get('/sports', function (req, res, next) {
 			parseXML(body, function (err, result) {
     			records = result.response.data[0].record;
     			records.forEach(function (record){
-    				listVal.push({'thumb': record.sport_image[0].$.medium,
+    				listVal.push({'thumb': (record.sport_image[0].$.medium) ? record.sport_image[0].$.medium : '/images/GameOn_BigLogo.png',
 						'displayname': record.displayname[0],
 						'link': '/article_list?title='+ record.displayname[0] +'&searchParm=' + record.queryparameter[0] + '*&sport='+ record.queryparameterv[0]});
     			});
