@@ -52,7 +52,7 @@ app.get('/', function (req, res, next)  {
 });
 
 app.get('/episodes', function (req, res, next) {
-	fs.exists('public/html/episode-test-1.html', function(exists){
+	fs.exists('public/html/episode-1.html', function(exists){
 		if (exists) {
 			res.render('episodes',  { 	title : 'Past Episodes',
 										date: strftime('%B %e, %Y') }); 
