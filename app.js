@@ -111,7 +111,7 @@ app.get('/video_list', function (req,res,next) {
 	var listVal = [];
 	request({'url': gameon.videoSearch + searchParm, 'json':true}, function (error, response, body){
 			if (!error && response.statusCode == 200) {
-				if (!body.media_list) {res.render('no_records', {'title':title, message: 'No videos available'}); return;};
+				if (body.total_results == 0) {res.render('no_records', {'title':title, message: 'No videos available'}); return;};
 				body.media_list.forEach(function (episode) {
 					listVal.push({'thumb': episode.thumbnails[1].url,
 									'mediaid': episode.media_id,

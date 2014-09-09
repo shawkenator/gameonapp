@@ -8,11 +8,11 @@ var fs = require('fs')
 //set URIs based on the site
 switch (process.env.site) {
 	case '1' : var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1';
-		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
-		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
+		exports.school = 'https://builder.eachscape.com/data/collections/19285.xml';
+		exports.sport = 'https://builder.eachscape.com/data/collections/19294.xml';
 		exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
-		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?';
+		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=1&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		break;
 	case '2': var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=2';
@@ -20,7 +20,7 @@ switch (process.env.site) {
 		exports.sport = 'https://builder.eachscape.com/data/collections/19273.xml';
 		exports.articleSearch = 'http://www.burlingtoncountytimes.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.burlingtoncountytimes.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
-		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?';
+		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=2&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		break;
 	case '3': var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=3';
@@ -28,7 +28,7 @@ switch (process.env.site) {
 		exports.sport = 'https://builder.eachscape.com/data/collections/19294.xml';
 		exports.articleSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
-		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?';
+		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=3&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		break;
 	case '4': var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=4';
@@ -36,7 +36,7 @@ switch (process.env.site) {
 		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
 		exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
-		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?';
+		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=4&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		break;
 	default: var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1';
@@ -44,7 +44,7 @@ switch (process.env.site) {
 		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
 		exports.articleSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
-		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?';
+		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=1&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 } 
 
