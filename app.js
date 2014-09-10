@@ -10,7 +10,10 @@ var express = require('express')
   , strftime = require('strftime')
   , morgan = require('morgan')
   , gameon = require('./gameon')
-  , parseXML = require('xml2js').parseString;
+  , parseXML = require('xml2js').parseString
+  , passport = require('passport')
+  , LocalStrategy = require('passport-local')
+  , session = require('express-session');
 
 var app = express();
 
@@ -30,6 +33,9 @@ app.use(stylus.middleware(
   }
 ));
 app.use(express.static(__dirname + '/public'));
+app.use(session({ secret: 'gameon' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 var site = process.env.site;
 console.log('For site = ' + site);
