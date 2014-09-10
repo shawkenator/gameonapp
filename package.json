@@ -11,7 +11,7 @@
     "stylus": "*",
     "nib": "*",
     "strftime" : "*",
-    "xmldoc" : "*"
+    "xml2js" : "*"
   },
   "main": "app.js",
   "description": "High School sports all",
