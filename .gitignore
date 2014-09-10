@@ -1,4 +1,5 @@
 config_vars.env
 config_var.env
 *.html
+!privacypolicy.html
 /node_modules
