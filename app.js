@@ -68,7 +68,7 @@ app.get('/episodes', function (req, res, next) {
 
 app.get('/schools', function (req, res, next) {
 	var listVal = [];
-	request(gameon.school,function(error, response, body){
+	request(gameon.school,function (error, response, body){
 		if (!error && response.statusCode == 200) {
 			parseXML(body, function (err, result) {
     			records = result.response.data[0].record;
@@ -83,6 +83,14 @@ app.get('/schools', function (req, res, next) {
 									'date': strftime('%B %e, %Y'),
 									'list': listVal});
 	})
+});
+
+app.get('/test', function (req, res, next) {
+	request('http://www.buckscountycouriertimes.com/privacy/terms/', function (error, response, body) {
+		var contents = body.getElemenetById('tncms-block-166663');
+		// console.log(contents);
+		next('route');
+	});
 });
 
 app.get('/sports', function (req, res, next) {
