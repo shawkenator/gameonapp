@@ -182,7 +182,7 @@ app.get('/image_list', function (req,res,next) {
 			if (!error && response.statusCode == 200) {
 				parseXML(body, function (err, result) {
 					records = result.rss.channel[0].item;
-					if (!records) {res.render('no_records', {'title':title, message: 'No images available',
+					if (!records) {res.render('no_records', {'title':title, message: 'No photos available',
 															'videopageLink': '/video_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink,
 															'articleLink': '/article_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink}); return; };
 					records.forEach(function (record) {
@@ -239,11 +239,23 @@ app.get('/search', function (req, res, next) {
 							date: strftime('%B %e, %Y') })
 });
 
+// video page from a clip video
+app.get('/videopage/clip', function (req, res, next) {
+	if (!req.query.mediaid) { //if the mediaid query parameter is missing, do not process
+		next('route'); 
+	}
+	playerID = 'limelight_player_clip_' + process.env.site;
+	res.render('videopage',  { 	'title' : 'Video Player Page',
+								'date': strftime('%B %e, %Y'),
+								'media': req.query.mediaid,
+								'playerId': playerID  })
+});
+
+// video page from a GameOn video link
 app.get('/videopage', function (req, res, next) {
 	if (!req.query.mediaid) { //if the mediaid query parameter is missing, do not process
 		next('route'); 
 	}
-	// need some logic to determine the playerID which in turn controls the ad pre-roll tags
 	playerID = 'limelight_player_' + process.env.site;
 	res.render('videopage',  { 	'title' : 'Video Player Page',
 								'date': strftime('%B %e, %Y'),

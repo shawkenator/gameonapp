@@ -17,4 +17,4 @@ block content
 		each val, index in list
 			.article-item(style="background-image: url('#{list[index].thumb}');" onclick="location.href='/videopage?mediaid=#{list[index].mediaid}';")
 				.video-headline
-					a(href='/videopage?mediaid=#{list[index].mediaid}') #{list[index].headline}
+					a(href='/videopage/clip/?mediaid=#{list[index].mediaid}') #{list[index].headline}

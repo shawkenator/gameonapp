@@ -5,8 +5,9 @@ block underbarContent
 
 block content
 	.article-contain
-		.article-image-main
-			img(src= '#{image}')
+		if image
+			.article-image-main
+				img(src= '#{image}')
 		.clear
 		.article-content-main
 			h3 #{headline}
