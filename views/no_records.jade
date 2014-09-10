@@ -2,6 +2,28 @@ extend layout
 
 block underbarContent
 	#datepub #{title}
+	.underbar-catlinks
+		if articleLink
+			.articleicon
+				a(href='#{articleLink}')
+					img(src='/images/ArtricleIcon.png')
+		else
+			.articleicon
+				img(src='/images/ArtricleIcon_Selected.png')
+		if imageLink
+			.imagesicon
+				a(href='#{imageLink}')
+					img(src='/images/PicIcon.png')
+		else
+			.imagesicon
+				img(src='/images/PicIcon_Selected.png')
+		if videopageLink
+			.videoicon
+				a(href='#{videopageLink}')
+					img(src='/images/VideoIcon.png')
+		else
+			.videoicon
+				img(src='/images/VideoIcon_Selected.png')
 	
 block content
 	p #{message}

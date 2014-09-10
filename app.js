@@ -120,7 +120,9 @@ app.get('/video_list', function (req,res,next) {
 	var listVal = [];
 	request({'url': gameon.videoSearch + searchParm, 'json':true}, function (error, response, body){
 			if (!error && response.statusCode == 200) {
-				if (body.total_results == 0) {res.render('no_records', {'title':title, message: 'No videos available'}); return;};
+				if (body.total_results == 0) {res.render('no_records', {'title':title, message: 'No videos available',
+														'imageLink': '/image_list/?title=' + title + '&searchParm=' + req.query.searchParm + searchParm,
+														'articleLink': '/article_list/?title=' + title + '&searchParm=' + req.query.searchParm + searchParm}); return;};
 				body.media_list.forEach(function (episode) {
 					listVal.push({'thumb': episode.thumbnails[1].url,
 									'mediaid': episode.media_id,
@@ -147,7 +149,9 @@ app.get('/article_list', function (req,res,next) {
 			if (!error && response.statusCode == 200) {
 				parseXML(body, function (err, result) {	
 					records = result.rss.channel[0].item;
-					if (!records) {res.render('no_records', {'title':title, message: 'No articles available'}); return;};
+					if (!records) {res.render('no_records', {'title':title, message: 'No articles available',
+															'imageLink': '/image_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink,
+															'videopageLink': '/video_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink}); return;};
 					records.forEach(function (record) {
 						var headline = '', guid = '', imageURI = '';
 						headline = record.title[0];
@@ -178,7 +182,9 @@ app.get('/image_list', function (req,res,next) {
 			if (!error && response.statusCode == 200) {
 				parseXML(body, function (err, result) {
 					records = result.rss.channel[0].item;
-					if (!records) {res.render('no_records', {'title':title, message: 'No images available'}); return; };
+					if (!records) {res.render('no_records', {'title':title, message: 'No images available',
+															'videopageLink': '/video_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink,
+															'articleLink': '/article_list/?title=' + title + '&searchParm=' + req.query.searchParm + videoLink}); return; };
 					records.forEach(function (record) {
 						var headline = '', guid = '', imageURI = '', imageThumb = '', content = '', author = '';
 						headline = record.title[0];
