@@ -1,18 +1,24 @@
 extend layout
 
 block underbarContent
-
+	#datepub Subscription Required
 block content
-	form#local-sign-in.collapse(action='/login', method='post')
-		div
-			p
+	form(action='/login', method='post')
+		p
 			label Username:
-			input(type='text', name='username')
-		div
+				input(type='text', name='username')
+		p
 			label Password:
-			input(type='password', name='password')
-		div
+				input(type='password', name='password')
+		if title
+			p
+				input(type='hidden', name='title', value='#{title}')
+		if guid
+			p
+				input(type='hidden', name='guid', value='#{guid}')
+		p
 			input(type='submit', class='btn btn-primary btn-sm', value='Log In')
 
+		if message
+			p #{message}
 block footer
-	
