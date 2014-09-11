@@ -272,6 +272,7 @@ app.get('/article', function (req, res, next) {
 						console.log('Paid flag: ' + record.paid[0]);
 						if (record.paid[0] == 1 && !req.isAuthenticated()) {
 							res.redirect('/signin?title=' + title + '&guid=' + req.query.guid);
+							return;
 						}
 						headline = record.title[0];
 						author = record.author[0];
