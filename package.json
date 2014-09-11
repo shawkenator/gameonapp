@@ -14,17 +14,12 @@
     "jade": "*",
     "morgan": "1.3.0",
     "nib": "*",
-<<<<<<< HEAD
     "strftime" : "*",
-    "xml2js" : "*"
-=======
+    "xml2js" : "*",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0",
     "request": "*",
-    "strftime": "*",
-    "stylus": "*",
-    "xml2js": "*"
->>>>>>> authentication
+    "stylus": "*"
   },
   "main": "app.js",
   "description": "High School sports all",
