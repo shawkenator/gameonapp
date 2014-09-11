@@ -296,6 +296,13 @@ app.get('/search', function (req, res, next) {
 							date: strftime('%B %e, %Y') })
 });
 
+app.get('/settings', function (req, res, next) {
+	res.render('settings',  { title : 'settings',
+							date: strftime('%B %e, %Y') })
+});
+
+
+
 // video page from a clip video
 app.get('/videopage/clip', function (req, res, next) {
 	if (!req.query.mediaid) { //if the mediaid query parameter is missing, do not process
