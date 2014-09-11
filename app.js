@@ -12,8 +12,9 @@ var express = require('express')
   , gameon = require('./gameon')
   , parseXML = require('xml2js').parseString
   , passport = require('passport')
-  , LocalStrategy = require('passport-local')
-  , session = require('express-session');
+  , LocalStrategy = require('passport-local').Strategy
+  , session = require('express-session')
+  , bodyParse = require('body-parser');
 
 var app = express();
 
@@ -32,10 +33,24 @@ app.use(stylus.middleware(
   , compile: compile
   }
 ));
+app.use(bodyParse());
 app.use(express.static(__dirname + '/public'));
 app.use(session({ secret: 'gameon' }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.use('local', new LocalStrategy(
+  function (username, password, done) {console.log("First function")},
+  function (err, user) {console.log("second function")}
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+ 
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 var site = process.env.site;
 console.log('For site = ' + site);
@@ -56,6 +71,24 @@ app.get('/', function (req, res, next)  {
 			next('route');
 		}
 	});
+});
+
+app.get('/signin', function (req, res, next) {
+	res.render('signin');
+});
+
+app.post('/login', function (req, res, next) {
+	console.log(req.param('username'));
+	next();
+}, passport.authenticate('local',{'failureRedirect':'/loginFailure','successRedirect':'/loginSuccess'})
+);
+
+app.get('/loginFailure', function (req, res, next) {
+  res.send('Failed to authenticate');
+});
+ 
+app.get('/loginSuccess', function (req, res, next) {
+  res.send('Successfully authenticated');
 });
 
 app.get('/episodes', function (req, res, next) {
@@ -89,14 +122,6 @@ app.get('/schools', function (req, res, next) {
 									'date': strftime('%B %e, %Y'),
 									'list': listVal});
 	})
-});
-
-app.get('/test', function (req, res, next) {
-	request('http://www.buckscountycouriertimes.com/privacy/terms/', function (error, response, body) {
-		var contents = body.getElemenetById('tncms-block-166663');
-		// console.log(contents);
-		next('route');
-	});
 });
 
 app.get('/sports', function (req, res, next) {
