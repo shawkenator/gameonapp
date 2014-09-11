@@ -16,7 +16,8 @@ var express = require('express')
   , session = require('express-session')
   , bodyParse = require('body-parser')
   , flash = require('connect-flash')
-  , cookieParser = require('cookie-parser');
+  , cookieParser = require('cookie-parser')
+  , newzware = require('./newzware');
 
 var app = express();
 
@@ -39,20 +40,9 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use('local', new LocalStrategy({passReqToCallback : true},
-	function (req, username, password, done) {
-	if (password === 'mypaper') {
-		var user = {};
-		user.username = username;
-		user.password = password;
-		user.id = '12345';
-		return done(null, user);
-		}
-	else {
-		return done(null, false, req.flash('error_messages','Incorrect password.'))
-		}
-	}
-));
+passport.use('local', new LocalStrategy({passReqToCallback : true}, 
+	function (req, username, password, done) { newzware(done, req, username, password, gameon.edition, 504) } )
+);
 
 passport.serializeUser(function(user, done) {
  	done(null, user);
@@ -71,8 +61,13 @@ app.use(function(req, res, next){
     next();
 });
 
+app.use(function (req, res, next){
+	console.log('IP= ' + req.ip);
+	next();
+});
+
 app.get('/', function (req, res, next)  {
-	var options = {url: 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=' + site,json: true};
+	var options = {'url': gameon.episodes,json: true};
 	request(options, function(error, response, body){
 		if (!error && response.statusCode == 200) {
 			var episode = body.media_list[0];
@@ -92,7 +87,6 @@ app.get('/', function (req, res, next)  {
 app.get('/signin', function (req, res, next) {
 	guid = req.query.guid || '';
 	title = req.query.title || '';
-	console.log(res.locals.error_messages[0]);
 	res.render('signin',{'title':title,'guid':guid, 'message': res.locals.error_messages[0] });
 });
 
@@ -266,29 +260,29 @@ app.get('/article', function (req, res, next) {
 	request(gameon.articleSearch + req.query.guid, function (error, response, body){
 		if (!error && response.statusCode == 200) {
 			parseXML(body, function (err, result) {	
-				records = result.rss.channel[0].item;
-				records.forEach(function (record) {
-						// check to see if content requires a subscription
-						console.log('Paid flag: ' + record.paid[0]);
-						if (record.paid[0] == 1 && !req.isAuthenticated()) {
-							res.redirect('/signin?title=' + title + '&guid=' + req.query.guid);
-							return;
-						}
+				record = result.rss.channel[0].item[0];
+					// check to see if content requires a subscription
+					console.log('Paid flag: ' + record.paid[0]);
+					if (record.paid[0] == 1 && !req.isAuthenticated()) {
+						res.redirect('/signin?title=' + title + '&guid=' + req.query.guid);
+						return;
+					} else {
 						headline = record.title[0];
 						author = record.author[0];
 						content = record.content[0];
 						pubDate = strftime('%a, %d %b %Y %H:%M %Z', new Date(record.pubDate[0]));
 						if (record.multimedia[0].media) { //images attached
 							imageURI = record.multimedia[0].media[0].link; }
-					});
+						res.render('article', { 'title' : title,
+												'date': pubDate,
+												'image': imageURI,
+												'headline': headline,
+												'author': author,
+												'content': content });
+					}
 				});
 			}
-		res.render('article', { 'title' : title,
-								'date': pubDate,
-								'image': imageURI,
-								'headline': headline,
-								'author': author,
-								'content': content });
+		res.end();
 	});
 });
 

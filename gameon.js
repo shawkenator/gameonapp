@@ -7,64 +7,58 @@ var fs = require('fs')
 
 //set URIs based on the site
 switch (process.env.site) {
-	case '1' : var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1';
+	case '1' : exports.episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1';
 		exports.school = 'https://builder.eachscape.com/data/collections/19285.xml';
 		exports.sport = 'https://builder.eachscape.com/data/collections/19294.xml';
 		exports.articleSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=article&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=1&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
+		exports.edition = 'CTI';
 		break;
-	case '2': var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=2';
+	case '2': exports.pisodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=2';
 		exports.school = 'https://builder.eachscape.com/data/collections/19271.xml';
 		exports.sport = 'https://builder.eachscape.com/data/collections/19273.xml';
 		exports.articleSearch = 'http://www.burlingtoncountytimes.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.burlingtoncountytimes.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=2&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
+		exports.edition = 'BTI';
 		break;
-	case '3': var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=3';
+	case '3': exports.episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=3';
 		exports.school = 'https://builder.eachscape.com/data/collections/19285.xml';
 		exports.sport = 'https://builder.eachscape.com/data/collections/19294.xml';
 		exports.articleSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=3&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
+		exports.edition = 'CMI';
 		break;
-	case '4': var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=4';
+	case '4': exports.episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=4';
 		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
 		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
 		exports.articleSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.timesonline.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=4&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
+		exports.edition = 'BNI';
 		break;
-	default: var episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1';
+	default: exports.episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1';
 		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
 		exports.sport = 'https://builder.eachscape.com/data/collections/19268.xml';
 		exports.articleSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.imageSearch = 'http://www.buckscountycouriertimes.com/search-whiz/?f=rss&t=image&l=30&d=&d1=&d2=&s=start_time&sd=desc&c[]=';
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=1&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
+		exports.edition = 'CTI';
 } 
-
-/* episode_update = function(){
-	request(episodes, function(error, res, body) {
-		if (!error) {
-			console.log("Result Status for file " + episodes + ' = ' + res.statusCode);
-			fs.writeFile('public/html/episode-1.html',body,function(err){
-				if (!err) console.log('File: ' + episodes + ' updated');
-			})
-		}
-	});
-} */
 
 //build episode html files
 episode_update = function(){
 	fs.mkdir('public/html', function (err) {}) //create the directory if it is missing. 
-	request({url: episodes, json: true}, function(error, res, body) {
+	request({url: exports.episodes, json: true}, function(error, res, body) {
 		if (!error) {
-			console.log("Result Status for file " + episodes + ' = ' + res.statusCode);
+			console.log("Result Status for file " + exports.episodes + ' = ' + res.statusCode);
 			var itemNumber = 1, pageNumber = 1, itemOnPage = 1, done = false, results = body.media_list.length, output = '', nextPage = 0;
 			while (results && !done) { //loop through the results if we have any until we are done
 				var currentVideo = body.media_list[itemNumber]; //get the meta data for the video at position itemNumber
