@@ -6,12 +6,25 @@
     "Node": "0.10.x"
   },
   "dependencies": {
+    "body-parser": "*",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.0.1",
     "express": "*",
+    "express-session": "^1.8.1",
     "jade": "*",
-    "stylus": "*",
+    "morgan": "1.3.0",
     "nib": "*",
+<<<<<<< HEAD
     "strftime" : "*",
     "xml2js" : "*"
+=======
+    "passport": "^0.2.0",
+    "passport-local": "^1.0.0",
+    "request": "*",
+    "strftime": "*",
+    "stylus": "*",
+    "xml2js": "*"
+>>>>>>> authentication
   },
   "main": "app.js",
   "description": "High School sports all",

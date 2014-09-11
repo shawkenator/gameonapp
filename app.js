@@ -10,7 +10,13 @@ var express = require('express')
   , strftime = require('strftime')
   , morgan = require('morgan')
   , gameon = require('./gameon')
-  , parseXML = require('xml2js').parseString;
+  , parseXML = require('xml2js').parseString
+  , passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy
+  , session = require('express-session')
+  , bodyParse = require('body-parser')
+  , flash = require('connect-flash')
+  , cookieParser = require('cookie-parser');
 
 var app = express();
 
@@ -24,15 +30,46 @@ app.set('title','GameOn');
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(morgan('combined'));
-app.use(stylus.middleware(
-  { src: __dirname + '/public'
-  , compile: compile
-  }
-));
+app.use(stylus.middleware({ src: __dirname + '/public', compile: compile}));
+app.use(bodyParse());
 app.use(express.static(__dirname + '/public'));
+app.use(cookieParser());
+app.use(session({ secret: 'gameon' }));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use('local', new LocalStrategy({passReqToCallback : true},
+	function (req, username, password, done) {
+	if (password === 'mypaper') {
+		var user = {};
+		user.username = username;
+		user.password = password;
+		user.id = '12345';
+		return done(null, user);
+		}
+	else {
+		return done(null, false, req.flash('error_messages','Incorrect password.'))
+		}
+	}
+));
+
+passport.serializeUser(function(user, done) {
+ 	done(null, user);
+});
+ 
+passport.deserializeUser(function(user, done) {
+	done(null, user);
+});
 
 var site = process.env.site;
 console.log('For site = ' + site);
+
+app.use(function(req, res, next){
+    res.locals.success_messages = req.flash('success_messages');
+    res.locals.error_messages = req.flash('error_messages');
+    next();
+});
 
 app.get('/', function (req, res, next)  {
 	var options = {url: 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=' + site,json: true};
@@ -50,6 +87,29 @@ app.get('/', function (req, res, next)  {
 			next('route');
 		}
 	});
+});
+
+app.get('/signin', function (req, res, next) {
+	guid = req.query.guid || '';
+	title = req.query.title || '';
+	console.log(res.locals.error_messages[0]);
+	res.render('signin',{'title':title,'guid':guid, 'message': res.locals.error_messages[0] });
+});
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+app.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/signin?title='+req.param('title')+'&guid='+req.param('guid')); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/article?title='+req.param('title')+'&guid='+req.param('guid'));
+    });
+  })(req, res, next);
 });
 
 app.get('/episodes', function (req, res, next) {
@@ -83,14 +143,6 @@ app.get('/schools', function (req, res, next) {
 									'date': strftime('%B %e, %Y'),
 									'list': listVal});
 	})
-});
-
-app.get('/test', function (req, res, next) {
-	request('http://www.buckscountycouriertimes.com/privacy/terms/', function (error, response, body) {
-		var contents = body.getElemenetById('tncms-block-166663');
-		// console.log(contents);
-		next('route');
-	});
 });
 
 app.get('/sports', function (req, res, next) {
@@ -216,6 +268,11 @@ app.get('/article', function (req, res, next) {
 			parseXML(body, function (err, result) {	
 				records = result.rss.channel[0].item;
 				records.forEach(function (record) {
+						// check to see if content requires a subscription
+						console.log('Paid flag: ' + record.paid[0]);
+						if (record.paid[0] == 1 && !req.isAuthenticated()) {
+							res.redirect('/signin?title=' + title + '&guid=' + req.query.guid);
+						}
 						headline = record.title[0];
 						author = record.author[0];
 						content = record.content[0];
