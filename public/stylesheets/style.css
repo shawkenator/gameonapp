@@ -334,7 +334,31 @@ footer {
   padding: 0;
   list-style-type: none;
 }
+#tncms-block-334717 {
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 10px;
+  background: none repeat scroll 0 0 #fff;
+  position: relative;
+  text-align: left;
+}
+#tncms-block-62016 {
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 10px;
+  background: none repeat scroll 0 0 #fff;
+  position: relative;
+  text-align: left;
+}
+.blox-html-asset {
+  padding-right: 10px;
+  width: 98% !important;
+}
 @media screen and (min-width: 320px) {
+  .blox-html-asset {
+    width: 300px;
+    padding-right: 10px;
+  }
   .article-image-main img {
     width: 300px;
     -webkit-box-shadow: 0 8px 6px -6px #000;
@@ -437,6 +461,10 @@ footer {
   }
 }
 @media screen and (min-width: 720px) {
+  .blox-html-asset {
+    width: 620px;
+    padding-right: 10px;
+  }
   .article-image-main img {
     width: 450px;
     -webkit-box-shadow: 0 8px 6px -6px #000;
@@ -531,6 +559,10 @@ footer {
   }
 }
 @media screen and (min-width: 961px) {
+  .blox-html-asset {
+    width: 720px;
+    padding-right: 10px;
+  }
   .article-image-main img {
     width: 600px;
     -webkit-box-shadow: 0 8px 6px -6px #000;

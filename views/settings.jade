@@ -4,12 +4,8 @@ block underbarContent
 	#datepub #{title}
 
 block content
-	link(rel='stylesheet', href='/stylesheets/colorbox.css')
-	script(src='/js/jquery.colorbox.js')
-	script(type='text/javascript').
-		$(document).ready(function(){
-			$(".ajax").colorbox();
-		});
+	link(rel='stylesheet', href='/stylesheets/magnific-popup.css')
+
 
 	.article-contain
 		ul#settings-list
@@ -17,8 +13,11 @@ block content
 			li 
 				a(href='#') About
 			li 
-				a.ajax(href='/html/privacypolicy.html') Privacy Policy
+				a.simple-ajax-popup-align-top(href='/html/privacypolicy.html') Privacy Policy
 			li 
-				a(href='#') Terms of Use
+				a.simple-ajax-popup-align-top2(href='/html/terms.html') Terms of Use
 			li 
 				a(href='#') Feedback
+
+	script(src='/js/jquerymagnific-popup.js')
+	script(src='/js/ajax-pop.js')
