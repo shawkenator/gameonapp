@@ -126,6 +126,10 @@ header {
   border-bottom: 1px solid #021d3c;
   text-shadow: 0px -1px 0px #021d3c;
 }
+.error-message {
+  color: #f00;
+  font-weight: bold;
+}
 .container {
   width: 500px;
   margin: 50px auto;

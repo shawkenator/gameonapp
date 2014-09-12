@@ -17,23 +17,22 @@ block content
 
 	.subscribeform
 		form(action='/login', method='post')
-				p
-					label Please sign in
-						input(type='text', name='username', class='form-control', placeholder='User address')
-					br
-					label 
-						input(type='password', name='password', class='form-control', placeholder='Password')
+			p
+				label Please sign in
+					input(type='text', name='username', class='form-control', placeholder='Username')
+				br
+				label 
+					input(type='password', name='password', class='form-control', placeholder='Password')
 			if title
-				p
+				p 
 					input(type='hidden', name='title', value='#{title}')
 			if guid
-				p
+				p 
 					input(type='hidden', name='guid', value='#{guid}')
-			p
+			p 
 				input(type='submit', class='btn btn-primary btn-sm', value='Log In')
-
-			p <a href="javascript:void(0)" onclick="nwssmpop_loadSub()">Already have a subscription and need to create an account?</a>
+				p <a href="javascript:void(0)" onclick="nwssmpop_loadSub()">Already have a subscription and need to create an account?</a>
 
 			if message
-				p #{message}
+				p.error-message #{message}
 block footer
