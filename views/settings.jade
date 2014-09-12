@@ -14,35 +14,35 @@ block content
 			li.settings-title App Information
 			li 
 				#about-message(title='About Us')
-					if site = 1
+					if site == '1'
 						include ../public/html/about-1.html
-					else if site = 2
+					else if site == '2'
 						include ../public/html/about-2.html
-					else if site = 3
+					else if site == '3'
 						include ../public/html/about-3.html
-					else if site = 4
+					else if site == '4'
 						include ../public/html/about-4.html	
 				a(href='#', onClick='$("#about-message").dialog("open")') About
 			li 
 				#privacy-message(title='Privacy Policy')
-					if site = 1
+					if site == '1'
 						include ../public/html/privacypolicy-1.html
-					else if site = 2
+					else if site == '2'
 						include ../public/html/privacypolicy-2.html
-					else if site = 3
+					else if site == '3'
 						include ../public/html/privacypolicy-3.html
-					else if site = 4
+					else if site == '4'
 						include ../public/html/privacypolicy-4.html					
 				a(href='#', onClick='$("#privacy-message").dialog("open")') Privacy Policy
 			li 
 				#terms-message(title='Terms of Use')
-					if site = 1
+					if site == '1'
 						include ../public/html/terms-1.html
-					else if site = 2
+					else if site == '2'
 						include ../public/html/terms-2.html
-					else if site = 3
+					else if site == '3'
 						include ../public/html/terms-3.html
-					else if site = 4
+					else if site == '4'
 						include ../public/html/terms-4.html
 				a(href='#', onClick='$("#terms-message").dialog("open")') Terms of Use
 			li 

@@ -238,9 +238,12 @@ footer {
 #datepub {
   font-size: 14px;
   line-height: 30px;
-  color: #29abe2;
+  color: #d0e1ea;
   float: left;
   padding-left: 15px;
+  text-shadow: 1px 1px 4px #000;
+  font-weight: bold;
+  text-transform: capitalize;
 }
 #playbutton a {
   color: #fff;
