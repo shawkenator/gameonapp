@@ -19,7 +19,7 @@ switch (process.env.site) {
 		exports.subscribeLink = 'http://m.buckscountycouriertimes.com/subscribe/offers/26_26_subscription_offer_sale.html?gameonapp';
 		exports.registrationLink = 'https://calkins.newzware.com/ss70v2/cti/custom/ssmpop.js'
 		break;
-	case '2': exports.pisodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=2';
+	case '2': exports.episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=2';
 		exports.school = 'https://builder.eachscape.com/data/collections/19271.xml';
 		exports.sport = 'https://builder.eachscape.com/data/collections/19273.xml';
 		exports.articleSearch = 'http://www.burlingtoncountytimes.com/search-whiz/?f=rss&t=article&l=100&d=&d1=&d2=&s=start_time&sd=desc&c[]=';

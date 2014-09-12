@@ -77,7 +77,7 @@ app.get('/', function (req, res, next)  {
 								   'date' : strftime('%B %e, %Y'),
 								   'playerID': 'limelight_player_' + process.env.site});
 		}
-		else {console.log('there was an error')
+		else {console.log(error)
 			//what to do if there was an error?
 			next('route');
 		}
