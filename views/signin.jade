@@ -1,6 +1,7 @@
 extend layout
 
 block head
+	link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
 	script(type="text/javascript" src="#{register}")
 	script.
 		nwssmpop_loadJQuery = 'Y'; 
@@ -10,30 +11,29 @@ block underbarContent
 	#datepub Subscription Required
 
 block content
-	span
-		div
-			p If you&rsquo;re a subscriber to the #{publication}</strong>, you should already have All Digital Access. Log-in below.
-			br
-			p If you&rsquo;re not a subscriber, select  <a href='#{subLink}'>Subscribe</a> to find out more.
+	.subscribe-text
+		p If you&rsquo;re a subscriber to the #{publication}</strong>, you should already have All Digital Access. Log-in below.
+		p If you&rsquo;re not a subscriber, select  <a href='#{subLink}'>Subscribe</a> to find out more.
 
-	form(action='/login', method='post')
-		p
-			label Username:
-				input(type='text', name='username')
-		p
-			label Password:
-				input(type='password', name='password')
-		if title
+	.subscribeform
+		form(action='/login', method='post')
+				p
+					label Please sign in
+						input(type='text', name='username', class='form-control', placeholder='User address')
+					br
+					label 
+						input(type='password', name='password', class='form-control', placeholder='Password')
+			if title
+				p
+					input(type='hidden', name='title', value='#{title}')
+			if guid
+				p
+					input(type='hidden', name='guid', value='#{guid}')
 			p
-				input(type='hidden', name='title', value='#{title}')
-		if guid
-			p
-				input(type='hidden', name='guid', value='#{guid}')
-		p
-			input(type='submit', class='btn btn-primary btn-sm', value='Log In')
+				input(type='submit', class='btn btn-primary btn-sm', value='Log In')
 
-		p <a href="javascript:void(0)" onclick="nwssmpop_loadSub()">Already have a subscription and need to create an account?</a>
+			p <a href="javascript:void(0)" onclick="nwssmpop_loadSub()">Already have a subscription and need to create an account?</a>
 
-		if message
-			p #{message}
+			if message
+				p #{message}
 block footer

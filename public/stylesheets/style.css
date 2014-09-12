@@ -354,6 +354,32 @@ footer {
   padding-right: 10px;
   width: 98% !important;
 }
+.subscribe-text {
+  color: #fff;
+  font-size: 16px;
+}
+.subscribe-text a {
+  color: #fba326;
+}
+.subscribe-text a:hover {
+  color: #2ab1e9;
+}
+.subscribeform {
+  padding-top: 10px;
+}
+.subscribeform a {
+  color: #fba326;
+}
+.subscribeform a:hover {
+  color: #2ab1e9;
+}
+.subscribeform span {
+  padding-right: 5px;
+}
+.subscribeform p {
+  font-size: 14px;
+  line-height: 20px;
+}
 @media screen and (min-width: 320px) {
   .blox-html-asset {
     width: 300px;
