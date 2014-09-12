@@ -74,7 +74,7 @@ episode_update = function(){
 	request({url: exports.episodes, json: true}, function(error, res, body) {
 		if (!error) {
 			console.log("Result Status for file " + exports.episodes + ' = ' + res.statusCode);
-			var itemNumber = 1, pageNumber = 1, itemOnPage = 1, done = false, results = body.media_list.length, output = '', nextPage = 0;
+			var itemNumber = 1, pageNumber = 1, itemOnPage = 1, results = body.media_list.length, output = '', nextPage = 0, done = itemNumber <= results;
 			while (results && !done) { //loop through the results if we have any until we are done
 				var currentVideo = body.media_list[itemNumber]; //get the meta data for the video at position itemNumber
 				output += "<div id='video-item'><div class='img-container'><a href=/videopage?mediaid=" + currentVideo.media_id + "><img src=" + currentVideo.thumbnails[1].url + "></a></div><p class='vidtitle'><a href=videopage?mediaid=" + currentVideo.media_id + ">" + currentVideo.title + "<br><span class='episodeDate'>" + strftime('%B %e, %Y', new Date(currentVideo.publish_date * 1000)) + "</span></a></p><div class='clear'></div></div>";
