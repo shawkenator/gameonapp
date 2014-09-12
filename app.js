@@ -297,8 +297,9 @@ app.get('/search', function (req, res, next) {
 });
 
 app.get('/settings', function (req, res, next) {
-	res.render('settings',  { title : 'settings',
-							date: strftime('%B %e, %Y') })
+	res.render('settings',  { 'title' : 'settings',
+							'date': strftime('%B %e, %Y'),
+							'site': site })
 });
 
 

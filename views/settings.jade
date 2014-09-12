@@ -1,23 +1,65 @@
 extend layout
 
+block head
+	link(rel="stylesheet", href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css")
+	script(src='//code.jquery.com/ui/1.11.1/jquery-ui.js')
+
 block underbarContent
 	#datepub #{title}
 
 block content
-	link(rel='stylesheet', href='/stylesheets/magnific-popup.css')
-
 
 	.article-contain
 		ul#settings-list
 			li.settings-title App Information
 			li 
-				a(href='#') About
+				#about-message(title='About Us')
+					if site = 1
+						include ../public/html/about-1.html
+					else if site = 2
+						include ../public/html/about-2.html
+					else if site = 3
+						include ../public/html/about-3.html
+					else if site = 4
+						include ../public/html/about-4.html	
+				a(href='#', onClick='$("#about-message").dialog("open")') About
 			li 
-				a.simple-ajax-popup-align-top(href='/html/privacypolicy.html') Privacy Policy
+				#privacy-message(title='Privacy Policy')
+					if site = 1
+						include ../public/html/privacypolicy-1.html
+					else if site = 2
+						include ../public/html/privacypolicy-2.html
+					else if site = 3
+						include ../public/html/privacypolicy-3.html
+					else if site = 4
+						include ../public/html/privacypolicy-4.html					
+				a(href='#', onClick='$("#privacy-message").dialog("open")') Privacy Policy
 			li 
-				a.simple-ajax-popup-align-top2(href='/html/terms.html') Terms of Use
+				#terms-message(title='Terms of Use')
+					if site = 1
+						include ../public/html/terms-1.html
+					else if site = 2
+						include ../public/html/terms-2.html
+					else if site = 3
+						include ../public/html/terms-3.html
+					else if site = 4
+						include ../public/html/terms-4.html
+				a(href='#', onClick='$("#terms-message").dialog("open")') Terms of Use
 			li 
-				a(href='#') Feedback
+				<a href='mailto:feedback@calkins.com?Subject=GameOn'>Feedback</a>
 
-	script(src='/js/jquerymagnific-popup.js')
-	script(src='/js/ajax-pop.js')
+	script.
+		$(function() {
+			$("#privacy-message").dialog({
+				autoOpen: false,
+				width: 'auto'
+			});
+			$("#terms-message").dialog({
+				autoOpen: false,
+				width: 'auto'
+			})
+			$("#about-message").dialog({
+				autoOpen: false,
+				width: 'auto'
+			})						
+		})
