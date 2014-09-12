@@ -87,7 +87,12 @@ app.get('/', function (req, res, next)  {
 app.get('/signin', function (req, res, next) {
 	guid = req.query.guid || '';
 	title = req.query.title || '';
-	res.render('signin',{'title':title,'guid':guid, 'message': res.locals.error_messages[0] });
+	res.render('signin',{'title':title,
+						'guid':guid, 
+						'message': res.locals.error_messages[0],
+						'subLink': gameon.subscribeLink,
+						'publication': gameon.title,
+						'register': gameon.registrationLink });
 });
 
 app.get('/logout', function(req, res){

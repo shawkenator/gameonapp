@@ -15,6 +15,9 @@ switch (process.env.site) {
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=1&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		exports.edition = 'CTI';
+		exports.title = 'Bucks County Courier Times';
+		exports.subscribeLink = 'http://m.buckscountycouriertimes.com/subscribe/offers/26_26_subscription_offer_sale.html?gameonapp';
+		exports.registrationLink = 'https://calkins.newzware.com/ss70v2/cti/custom/ssmpop.js'
 		break;
 	case '2': exports.pisodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=2';
 		exports.school = 'https://builder.eachscape.com/data/collections/19271.xml';
@@ -24,6 +27,9 @@ switch (process.env.site) {
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=2&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		exports.edition = 'BTI';
+		exports.title = 'Burlington County Times';
+		exports.subscribeLink = 'http://m.burlingtoncountyimes.com/subscribe/offers/26_26_subscription_offer_sale.html?gameonapp';
+		exports.registrationLink = 'https://calkins.newzware.com/ss70v2/bti/custom/ssmpop.js'
 		break;
 	case '3': exports.episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=3';
 		exports.school = 'https://builder.eachscape.com/data/collections/19285.xml';
@@ -33,6 +39,9 @@ switch (process.env.site) {
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=3&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		exports.edition = 'CMI';
+		exports.title = 'Intelligencier';
+		exports.subscribeLink = 'http://m.theintell.com/subscribe/offers/26_26_subscription_offer_sale.html?gameonapp';
+		exports.registrationLink = 'https://calkins.newzware.com/ss70v2/cmi/custom/ssmpop.js'
 		break;
 	case '4': exports.episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=4';
 		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
@@ -42,6 +51,9 @@ switch (process.env.site) {
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=4&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		exports.edition = 'BNI';
+		exports.title = 'Beaver County Times';
+		exports.subscribeLink = 'http://m.timesonline/subscriber?gameonapp';
+		exports.registrationLink = 'https://calkins.newzware.com/ss70v2/bni/custom/ssmpop.js'
 		break;
 	default: exports.episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1';
 		exports.school = 'https://builder.eachscape.com/data/collections/19266.xml';
@@ -51,6 +63,9 @@ switch (process.env.site) {
 		exports.videoSearch = 'http://s491706590.onlinehome.us/Sportsstats/feed.php?site=1&';
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		exports.edition = 'CTI';
+		exports.title = 'Bucks County Courier Times';
+		exports.subscribeLink = 'http://m.buckscountycouriertimes.com/subscribe/offers/26_26_subscription_offer_sale.html?gameonapp';
+		exports.registrationLink = 'https://calkins.newzware.com/ss70v2/cti/custom/ssmpop.js'
 } 
 
 //build episode html files

@@ -1,8 +1,21 @@
 extend layout
 
+block head
+	script(type="text/javascript" src="#{register}")
+	script.
+		nwssmpop_loadJQuery = 'Y'; 
+		nwssmpop_init();
+
 block underbarContent
 	#datepub Subscription Required
+
 block content
+	span
+		div
+			p If you&rsquo;re a subscriber to the #{publication}</strong>, you should already have All Digital Access. Log-in below.
+			br
+			p If you&rsquo;re not a subscriber, select  <a href='#{subLink}'>Subscribe</a> to find out more.
+
 	form(action='/login', method='post')
 		p
 			label Username:
@@ -18,6 +31,8 @@ block content
 				input(type='hidden', name='guid', value='#{guid}')
 		p
 			input(type='submit', class='btn btn-primary btn-sm', value='Log In')
+
+		p <a href="javascript:void(0)" onclick="nwssmpop_loadSub()">Already have a subscription and need to create an account?</a>
 
 		if message
 			p #{message}
