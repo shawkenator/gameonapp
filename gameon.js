@@ -52,7 +52,7 @@ switch (process.env.site) {
 		exports.defaultLogo = '/images/GameOn_BigLogo.png';
 		exports.edition = 'BNI';
 		exports.title = 'Beaver County Times';
-		exports.subscribeLink = 'http://m.timesonline/subscriber?gameonapp';
+		exports.subscribeLink = 'http://m.timesonline.com/mobile_adv/subscribepromo/';
 		exports.registrationLink = 'https://calkins.newzware.com/ss70v2/bni/custom/ssmpop.js'
 		break;
 	default: exports.episodes = 'http://s491706590.onlinehome.us/Sportsstats/GameOn.php?site=1';
