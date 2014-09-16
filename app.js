@@ -61,11 +61,6 @@ app.use(function(req, res, next){
     next();
 });
 
-app.use(function (req, res, next){
-	console.log('IP= ' + req.ip);
-	next();
-});
-
 app.get('/', function (req, res, next)  {
 	var options = {'url': gameon.episodes,json: true};
 	request(options, function(error, response, body){
@@ -87,8 +82,14 @@ app.get('/', function (req, res, next)  {
 app.get('/signin', function (req, res, next) {
 	guid = req.query.guid || '';
 	title = req.query.title || '';
+	if (req.query.school) {var videoLink = '&school=' + req.query.school}
+	else if (req.query.sport) {var videoLink = '&sport=' + req.query.sport}
+	else { var videoLink = ''}
+	console.log(req.query.searchParm);
 	res.render('signin',{'title':title,
-						'guid':guid, 
+						'guid':guid,
+						'searchParm':req.query.searchParm,
+						'videoLink':videoLink,
 						'message': res.locals.error_messages[0],
 						'subLink': gameon.subscribeLink,
 						'publication': gameon.title,
@@ -166,7 +167,6 @@ app.get('/sports', function (req, res, next) {
 app.get('/video_list', function (req,res,next) {
 	if (req.query.school) {var searchParm = '&school=' + req.query.school}
 	else if (req.query.sport) {var searchParm = '&sport=' + req.query.sport}
-	else {next('route')} //There is no school or sport provided in the url	
 	var title = req.query.title || '';
 	var listVal = [];
 	request({'url': gameon.videoSearch + searchParm, 'json':true}, function (error, response, body){
@@ -190,7 +190,6 @@ app.get('/video_list', function (req,res,next) {
 })
 
 app.get('/article_list', function (req,res,next) {
-	if (!req.query.searchParm) {next('route');} //There is no searchParm provided
 	if (req.query.school) {var videoLink = '&school=' + req.query.school}
 	else if (req.query.sport) {var videoLink = '&sport=' + req.query.sport}
 	else {videoLink = ''}
@@ -206,7 +205,7 @@ app.get('/article_list', function (req,res,next) {
 					records.forEach(function (record) {
 						var headline = '', guid = '', imageURI = '';
 						headline = record.title[0];
-						guid = '/article?title=' + title + '&guid=uuid:' + record.guid[0]._.substr(12); //build link to the article page
+						guid = '/article?title=' + title + '&guid=uuid:' + record.guid[0]._.substr(12) + '&searchParm=' + req.query.searchParm + videoLink; //build link to the article page
 						if (record.multimedia[0].media) { //images attached
 							imageURI = record.multimedia[0].media[0].link;
 						} else { imageURI = gameon.defaultLogo } //There was no image attached use default
@@ -223,10 +222,9 @@ app.get('/article_list', function (req,res,next) {
 })
 
 app.get('/image_list', function (req,res,next) {
-	if (!req.query.searchParm) {next('route');} //There is no searchParm provided
 	if (req.query.school) {var videoLink = '&school=' + req.query.school}
 	else if (req.query.sport) {var videoLink = '&sport=' + req.query.sport}
-	else {videoLink = ''}
+	else {var videoLink = ''}
 	var title = req.query.title || '';
 	var listVal = [];
 	request(gameon.imageSearch + req.query.searchParm, function (error, response, body){
@@ -261,6 +259,9 @@ app.get('/image_list', function (req,res,next) {
 app.get('/article', function (req, res, next) {
 	if (!req.query.guid) {next('route')} //there was no guid passed.
 	var title = req.query.title || '';
+	if (req.query.school) {var videoLink = '&school=' + req.query.school}
+	else if (req.query.sport) {var videoLink = '&sport=' + req.query.sport}
+	else { var videoLink = ''}
 	var headline = '', author = '', content = '', pubDate = '', imageURI = '';
 	request(gameon.articleSearch + req.query.guid, function (error, response, body){
 		if (!error && response.statusCode == 200) {
@@ -269,7 +270,7 @@ app.get('/article', function (req, res, next) {
 					// check to see if content requires a subscription
 					console.log('Paid flag: ' + record.paid[0]);
 					if (record.paid[0] == 1 && !req.isAuthenticated()) {
-						res.redirect('/signin?title=' + title + '&guid=' + req.query.guid);
+						res.redirect('/signin?title=' + title + '&guid=' + req.query.guid + '&searchParm=' + req.query.searchParm + videoLink);
 						return;
 					} else {
 						headline = record.title[0];
@@ -301,8 +302,6 @@ app.get('/settings', function (req, res, next) {
 							'date': strftime('%B %e, %Y'),
 							'site': site })
 });
-
-
 
 // video page from a clip video
 app.get('/videopage/clip', function (req, res, next) {

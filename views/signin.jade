@@ -36,3 +36,6 @@ block content
 			if message
 				p.error-message #{message}
 block footer
+	script.
+		$(window).load(function() { window.history.replaceState({},'GameOn','/article_list?title=#{title}&searchParm=#{searchParm}#{videoLink}');
+		console.log("script done.");})

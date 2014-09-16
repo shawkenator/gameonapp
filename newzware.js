@@ -16,7 +16,7 @@ module.exports = function (done, req, username, password, edition, appid) {
 		if (error) return done(error);
 		parseXML(body, function (err, result) {
 			if (err) return done(err);
-			console.log(result);
+			// console.log(result);
 			var user = {};
 			if (result.newzware['exit-code'][0] != '0') {
 				return done(null, false, req.flash('error_messages', result.newzware.message[0]))
